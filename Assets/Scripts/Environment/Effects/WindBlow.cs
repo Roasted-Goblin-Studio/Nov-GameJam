@@ -36,28 +36,21 @@ public class WindBlow : MonoBehaviour
             else {
                 characterMovement.HorizontalEnviromentalForceApplied = 0;
                 characterMovement.VerticalEnviromentalForceApplied = 0;
-            }
-            
-            
-            
-            Debug.Log("In the wind");
+            }        
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-
         if (other.tag == "Player")
         {   
             Character character = other.GetComponent<Character>();
             CharacterMovement characterMovement = other.GetComponent<CharacterMovement>();
             if(character.IsInWind){
-                Debug.Log("Left the wind ... ");
                 character.IsInWind = false;
                 characterMovement.HorizontalEnviromentalForceApplied = 0;
                 characterMovement.VerticalEnviromentalForceApplied = 0;
             }
         }
-        
     }
 }
