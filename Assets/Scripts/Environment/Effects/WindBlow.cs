@@ -18,7 +18,6 @@ public class WindBlow : MonoBehaviour
         {   
             Character character = other.GetComponent<Character>();
             if(!character.IsInWind){
-                Debug.Log("Entered the wind ...");
                 character.IsInWind = true;
             }
         }
