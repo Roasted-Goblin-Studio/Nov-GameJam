@@ -1672,9 +1672,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8193389019968343972, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
+      propertyPath: m_Size.x
+      value: 25.03994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193389019968343972, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
+      propertyPath: m_Offset.x
+      value: -5.7981987
+      objectReference: {fileID: 0}
     - target: {fileID: 8193389019968343973, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
       propertyPath: m_Name
       value: Wind Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193389019968343974, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
+      propertyPath: BlowingHorizontally
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193389019968343974, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
+      propertyPath: VerticalWindBlowingForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193389019968343974, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
+      propertyPath: HorizontalWindBlowingForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8193389019968343975, guid: b5eadfe3e1207fe419828412f1a170b0, type: 3}
       propertyPath: m_RootOrder

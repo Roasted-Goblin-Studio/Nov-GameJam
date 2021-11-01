@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class WindBlow : MonoBehaviour
 {
-    [SerializeField] private float WindBlowingForce = 50;
+    [SerializeField] private bool BlowingHorizontally = true;
+    [SerializeField] private bool BlowingRight = false;
+    [SerializeField] private float HorizontalWindBlowingForce = 50;
+
+    [SerializeField] private bool BlowingVertically = false;
+    [SerializeField] private bool BlowingUp = false;
+    [SerializeField] private float VerticalWindBlowingForce = 50;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,11 +30,17 @@ public class WindBlow : MonoBehaviour
         {
             Character character = other.GetComponent<Character>();
             CharacterMovement characterMovement = other.GetComponent<CharacterMovement>();
-            characterMovement.EnviromentalForceApplied = WindBlowingForce;
-            //character.RigidBody2D.AddRelativeForce(new Vector2(10,0));
+            
+            if(BlowingHorizontally) characterMovement.HorizontalEnviromentalForceApplied = BlowingRight ? HorizontalWindBlowingForce : -HorizontalWindBlowingForce;
+            else if (BlowingVertically) characterMovement.VerticalEnviromentalForceApplied = BlowingUp ? VerticalWindBlowingForce : -VerticalWindBlowingForce;
+            else {
+                characterMovement.HorizontalEnviromentalForceApplied = 0;
+                characterMovement.VerticalEnviromentalForceApplied = 0;
+            }
+            
+            
             
             Debug.Log("In the wind");
-
         }
     }
 
@@ -42,7 +54,8 @@ public class WindBlow : MonoBehaviour
             if(character.IsInWind){
                 Debug.Log("Left the wind ... ");
                 character.IsInWind = false;
-                characterMovement.EnviromentalForceApplied = 0;
+                characterMovement.HorizontalEnviromentalForceApplied = 0;
+                characterMovement.VerticalEnviromentalForceApplied = 0;
             }
         }
         
