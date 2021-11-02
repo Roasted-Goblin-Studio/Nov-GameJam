@@ -2,9 +2,9 @@ name: Build project
 
 on: 
   workflow_dispatch: {}
-  push:
+  pull_request:
     branches:
-      - develop
+      - master
 
 env:
   ITCH_PROJECT_NAME: lil-ronin-testing
