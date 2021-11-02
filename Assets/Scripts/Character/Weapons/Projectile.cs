@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float _ProjectileDamage = 1f;
     [SerializeField] protected ProjectileTypes _ProjectileType;
 
+    protected Collider2D _Collider2D;
     protected Rigidbody2D _ProjectileRigidBody2D;
     protected SpriteRenderer _ProjectileSpriteRender;
     protected Vector2 _ProjectileMovement;
@@ -24,12 +25,14 @@ public class Projectile : MonoBehaviour
 
     public enum ProjectileTypes
     {
-        Bullet
+        Bullet,
+        Beam
     }
 
     private void Awake() {
         _ProjectileRigidBody2D = GetComponent<Rigidbody2D>();
         _ProjectileSpriteRender = GetComponent<SpriteRenderer>();
+        _Collider2D = GetComponent<Collider2D>();
     }
 
     // Start is called before the first frame update
@@ -75,5 +78,13 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         // This will need to improve drastically.
+    }
+
+    protected virtual void OnTriggerStay2D(Collider2D collider){
+
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D other) {
+        
     }
 }

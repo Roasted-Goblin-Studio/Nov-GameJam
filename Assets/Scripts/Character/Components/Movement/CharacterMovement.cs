@@ -6,10 +6,12 @@ public class CharacterMovement : CharacterComponent
 {
     // Private
     private float _HorizontalMovement;
-    private float _VerticalMovement;
+    private float _VerticalMovement = 0f;
     private float _HorizontalForceApplied;
+    private float _VerticalForceApplied;
     private float _MovementCompoundValue = 0.015f;
-    private float _EnviromentalForceApplied = 0;
+    private float _HorizontalEnviromentalForceApplied = 0;
+    private float _VerticalEnviromentalForceApplied = 0;
 
     // Protected
 
@@ -23,8 +25,9 @@ public class CharacterMovement : CharacterComponent
     public float HorizontalMovement { get => _HorizontalMovement; set => _HorizontalMovement = value; }
     public float VerticalMovement { get => _VerticalMovement; set => _VerticalMovement = value; }
     public float DragToBeApplied { get => _DragToBeApplied; set => _DragToBeApplied = value; }
-    public float EnviromentalForceApplied { get => _EnviromentalForceApplied; set => _EnviromentalForceApplied = value; }
-    
+    public float HorizontalEnviromentalForceApplied { get => _HorizontalEnviromentalForceApplied; set => _HorizontalEnviromentalForceApplied = value; }
+    public float VerticalEnviromentalForceApplied { get => _VerticalEnviromentalForceApplied; set => _VerticalEnviromentalForceApplied = value; }
+
 
     protected override void Start(){
         base.Start();
@@ -53,22 +56,25 @@ public class CharacterMovement : CharacterComponent
             if(_Character.IsInWind){
                 if(_Character.IsFacingRight){
                     if(_HorizontalMovement == 0){
-                        _HorizontalForceApplied = -EnviromentalForceApplied;
+                        _HorizontalForceApplied = HorizontalEnviromentalForceApplied;
                     }
                     else{
-                        _HorizontalForceApplied += -EnviromentalForceApplied;
+                        _HorizontalForceApplied += HorizontalEnviromentalForceApplied;
                     }
+
                 }else{
                     if(_HorizontalMovement == 0){
-                        _HorizontalForceApplied = EnviromentalForceApplied;
+                        _HorizontalForceApplied = HorizontalEnviromentalForceApplied;
                     }
                     else{
-                        _HorizontalForceApplied += EnviromentalForceApplied;
+                        _HorizontalForceApplied += HorizontalEnviromentalForceApplied;
                     }
                 }
             }
 
-            _Character.RigidBody2D.AddForce(new Vector2(_HorizontalForceApplied, 0), ForceMode2D.Impulse); // <-- Immediate force applied
+            float verticalMovement = VerticalMovement + VerticalEnviromentalForceApplied;
+
+            _Character.RigidBody2D.AddForce(new Vector2(_HorizontalForceApplied, verticalMovement), ForceMode2D.Impulse); // <-- Immediate force applied
         }
 
         // Vertical 
