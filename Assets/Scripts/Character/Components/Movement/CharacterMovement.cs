@@ -73,7 +73,6 @@ public class CharacterMovement : CharacterComponent
             }
 
             float verticalMovement = VerticalMovement + VerticalEnviromentalForceApplied;
-            Debug.Log("Vertical Movement: " + verticalMovement);
 
             _Character.RigidBody2D.AddForce(new Vector2(_HorizontalForceApplied, verticalMovement), ForceMode2D.Impulse); // <-- Immediate force applied
         }
