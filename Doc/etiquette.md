@@ -1,3 +1,12 @@
+
+# Branching 
+Create a feature branch with your name which you can use through the Jam. 
+- `feature/wiggles` <-- branch name
+
+Commit often, we want that history babyyy
+
+Create a PR when you're ready to merge your code with the `develop` branch, then reach out to Phil or Weston for approval
+
 # Programming contribution etiquette
 ## Simplified Single line prefernces
 ### Single line with no open/close braces
@@ -39,3 +48,4 @@ The reason we use the public format specifically is because it matches our funct
 private bool _IsMoving;
 private bool _IsGrounded;
 ```
+
