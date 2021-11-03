@@ -82,7 +82,7 @@ jobs:
           overwrite: true
           
       - name: Prep Channel
-        if: channel
+        id: channel
         run: |
           echo "::set-output name=channel::$(echo "${{ matrix.targetPlatform }}"  | sed "s/Standalone//g")"
           
