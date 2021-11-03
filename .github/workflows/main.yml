@@ -83,7 +83,7 @@ jobs:
 #-----------------------------------------------------------------------------
       - name: Upload StandaloneOSX build to Itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
-        if: ${{ matrix.targetPlatform  == "StandaloneOSX" }}
+        if: contains(${{ matrix.targetPlatform }}, "StandaloneOSX")
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: osx
@@ -94,7 +94,7 @@ jobs:
       
       - name: Upload StandaloneWindows build to Itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
-        if: ${{ matrix.targetPlatform  == "StandaloneWindows" }}
+        if: contains(${{ matrix.targetPlatform }}, "StandaloneWindows")
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: windows
@@ -105,7 +105,7 @@ jobs:
       
       - name: Upload StandaloneLinux64 build to Itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
-        if: ${{ matrix.targetPlatform  == "StandaloneLinux64" }}
+        if: contains(${{ matrix.targetPlatform }}, "StandaloneLinux64")
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: linux
@@ -116,7 +116,7 @@ jobs:
       
       - name: Upload WebGL build to Itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
-        if: ${{ matrix.targetPlatform  == "WebGL" }}
+        if: contains(${{ matrix.targetPlatform }}, "WebGL")
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: HTML5
