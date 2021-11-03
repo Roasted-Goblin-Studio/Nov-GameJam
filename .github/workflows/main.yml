@@ -5,9 +5,6 @@ on:
   pull_request:
     branches:
       - master
-  push:
-    branches:
-      - develop
 
 env:
   ITCH_PROJECT_NAME: lil-ronin-testing
