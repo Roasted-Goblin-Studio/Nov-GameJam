@@ -57,11 +57,11 @@ jobs:
 #-----------------------------------------------------------------------------
 # ARCHIVE
 #-----------------------------------------------------------------------------
-      - uses: actions/upload-artifact@v2
-        name: Archive Artifacts
-        with:
-          name: build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+      # - uses: actions/upload-artifact@v2
+      #   name: Archive Artifacts
+      #   with:
+      #     name: build-${{ matrix.targetPlatform }}
+      #     path: build/${{ matrix.targetPlatform }}
       
       - uses: montudor/action-zip@v1
         name: "Zip Builds - ${{ matrix.targetPlatform }}"
