@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7459dbaf843ef38459806a76e9ce62b4, type: 3}
-  m_Name: Boss1_Intro
+  m_Name: Boss1_Idle
   m_EditorClassIdentifier: 
   _AIMicroAction: {fileID: 0}
   _AIMacroActions: []
-  _AITransitions: []
+  _AITransitions:
+  - _Decision: {fileID: 11400000, guid: f472189522a131643a477f5c3624b4cd, type: 2}
+    _TrueState: {fileID: 11400000, guid: 72428df53c7a4084bac21e26f6bc7dea, type: 2}
+    _FalseState: {fileID: 11400000, guid: 85fe093125fea4f49925e163ec352019, type: 2}
   _ReturnToPreviousStateOnFinish: 0

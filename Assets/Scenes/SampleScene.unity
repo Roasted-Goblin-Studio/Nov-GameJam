@@ -1049,6 +1049,7 @@ GameObject:
   - component: {fileID: 1195629067}
   - component: {fileID: 1195629066}
   - component: {fileID: 1195629072}
+  - component: {fileID: 1195629073}
   m_Layer: 0
   m_Name: TEMP_BOSS
   m_TagString: Untagged
@@ -1222,6 +1223,20 @@ MonoBehaviour:
   _AIMovementRightKeyCode: 275
   _AIMovementUpKeyCode: 273
   _AIMovementDownKeyCode: 274
+--- !u!114 &1195629073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195629065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c1e4b4c49ba324fb030072939f15de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CurrentState: {fileID: 0}
+  _RemainState: {fileID: 0}
 --- !u!1 &1220641977
 GameObject:
   m_ObjectHideFlags: 3

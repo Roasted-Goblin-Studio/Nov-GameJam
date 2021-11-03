@@ -6,6 +6,7 @@ public class StateController : MonoBehaviour
 {
     // Private
     private Character _Character;
+    private AIFlags _AIFlags;
     private GameObject _Target;
     private AIState _TransitionState;
     private Decision _TransitionContext;
@@ -16,7 +17,8 @@ public class StateController : MonoBehaviour
     [SerializeField] private AIState _RemainState;
 
     // Public 
-    public Character Character {get => _Character; set => _Character = value;}
+    public Character Character { get => _Character; set => _Character = value; }
+    public AIFlags AIFlags { get => _AIFlags; set => _AIFlags = value; }
     public GameObject Target {get => _Target; set => _Target = value;}
     public AIState PreviousState {get => _AIPreviousState; set => _AIPreviousState = value;}
     
@@ -24,6 +26,7 @@ public class StateController : MonoBehaviour
     void Start()
     {
         _Character = GetComponent<Character>();
+        if(_Character.CharacterType == Character.CharacterTypes.AI) AIFlags = GetComponent<AIFlags>();
     }
 
     // Update is called once per frame
@@ -42,21 +45,21 @@ public class StateController : MonoBehaviour
             // Returning to Previous State
             Debug.Log("Transition To State called by: " + nextState.name);
             Decision decision_base = new Decision();
-            decision_base._Priority = 1;
-            decision_base._DecisionResult = true;
+            decision_base.Priority = 1;
+            decision_base.DecisionResult = true;
 
             _TransitionState = nextState;
             _TransitionContext = decision_base;
             
         }
         else if(nextState != _RemainState){
-            Debug.Log("Transition To State called by: " + nextState.name + " With priority: " + decision._Priority);
+            Debug.Log("Transition To State called by: " + nextState.name + " With priority: " + decision.Priority);
             if(_TransitionContext == null || _TransitionState == null){
                 _TransitionContext = decision;
                 _TransitionState = nextState;
             }
             
-            if(_TransitionContext._Priority < decision._Priority){
+            if(_TransitionContext.Priority < decision.Priority){
                 _TransitionContext = decision;
                 _TransitionState = nextState;
             }
