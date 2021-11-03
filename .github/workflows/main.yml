@@ -81,11 +81,16 @@ jobs:
           #prerelease: true
           overwrite: true
           
+      - name: Prep Channel
+        if: channel
+        run: |
+          echo "::set-output name=channel::$(echo "${{ matrix.targetPlatform }}"  | sed "s/Standalone//g")"
+          
       - name: Upload ${{ matrix.targetPlatform }} build to Itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
+          CHANNEL: ${{ steps.vars.outputs.channel }}
           ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
           ITCH_USER: roasted-goblin-studios
           PACKAGE: build/build-${{ matrix.targetPlatform }}.zip
