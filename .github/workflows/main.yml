@@ -46,7 +46,7 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
-      - uses: unity-builder@main
+      - uses: game-ci/unity-builder@main
         name: Build for Platform - ${{ matrix.targetPlatform }}
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
