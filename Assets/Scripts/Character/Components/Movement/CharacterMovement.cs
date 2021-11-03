@@ -33,6 +33,10 @@ public class CharacterMovement : CharacterComponent
         base.Start();
         SetLayerCollisionIgnores();
         _Character.RigidBody2D.drag = DragToBeApplied;
+
+        if(!_Character.CharacterUsesGravity) {
+            _Character.RigidBody2D.gravityScale = 0;
+        }
     }
 
     protected override void Update()
@@ -46,7 +50,7 @@ public class CharacterMovement : CharacterComponent
         if(_Character.DirectionalLocked) return;
 
         // Horizontal
-        if(!_Character.MovementLocked && !_UsesVerticalMovement){
+        if(!_Character.MovementLocked){
             _HorizontalForceApplied = _MovementSpeed * _HorizontalMovement;
             if(_HorizontalForceApplied > _MaxSpeed) _HorizontalForceApplied = _MaxSpeed;
             else if(_HorizontalForceApplied < -_MaxSpeed) _HorizontalForceApplied = -_MaxSpeed;
@@ -72,30 +76,23 @@ public class CharacterMovement : CharacterComponent
                 }
             }
 
-            float verticalMovement = VerticalMovement + VerticalEnviromentalForceApplied;
+            // Vertical 
+            if(_UsesVerticalMovement && !_Character.MovementLocked){
+                _VerticalForceApplied = _MovementSpeed * _VerticalMovement;
+                 if(_VerticalForceApplied > _MaxSpeed) _VerticalForceApplied = _MaxSpeed;
+                 else if(_VerticalForceApplied < -_MaxSpeed) _VerticalForceApplied = -_MaxSpeed;    
+            }
+            
+            // I'm fairly confident that the wind effect won't work with the vertical movement style ... yet
+            float verticalMovement = _VerticalForceApplied + VerticalEnviromentalForceApplied;
 
             _Character.RigidBody2D.AddForce(new Vector2(_HorizontalForceApplied, verticalMovement), ForceMode2D.Impulse); // <-- Immediate force applied
-        }
-
-        // Vertical 
-        if(_UsesVerticalMovement && !_Character.MovementLocked){
-            var calch = _MovementSpeed * _HorizontalMovement;
-            var calcv = _MovementSpeed * _VerticalMovement;
-
-            if(calch > _MaxSpeed) calch = _MaxSpeed;
-            else if(calch < -_MaxSpeed) calch = -_MaxSpeed;
-
-            if(calcv > _MaxSpeed) calcv = _MaxSpeed;
-            else if(calcv < -_MaxSpeed) calcv = -_MaxSpeed;
-
-            _Character.RigidBody2D.AddForce(new Vector2(calch, calcv), ForceMode2D.Force);        
         }
     }
 
     protected override bool HandlePlayerInput(){
         if(!base.HandlePlayerInput()) return false;
 
-        //_HorizontalMovement = Input.GetAxis("Horizontal");
         CalcPlayerHorizontalInputs();
         CalcPlayerVerticalInputs();
 
@@ -114,6 +111,10 @@ public class CharacterMovement : CharacterComponent
     protected override bool HandleAIInput(){
         if(!base.HandleAIInput()) return false;
         // Movement values are handled through the public SetFunctions
+
+        CalcAIHorizontalInputs();
+        CalcAIVerticalInputs();
+
         if(!_Character.MovementLocked){
             _Character.IsMoving = _HorizontalMovement != 0;
             if(_Character.IsMoving){
@@ -124,7 +125,6 @@ public class CharacterMovement : CharacterComponent
                 // Character is moving.
                 // Animation logic to be added here.
             }
-
         }
         return true;
     }
@@ -151,6 +151,7 @@ public class CharacterMovement : CharacterComponent
     }
 
     private void DetectIfGrounded(){
+        if(!_Character.GroundSensor) return;
         if(_Character.GroundSensor.SensorActivated) _Character.IsGrounded = true;
         else _Character.IsGrounded = false;
     }
@@ -176,8 +177,49 @@ public class CharacterMovement : CharacterComponent
         }
     }
 
+    private void CalcAIHorizontalInputs(){
+        // It's suggested online that KeyCodes are used over Input.RawAxis
+        // This allows us to retain control over the Keybindings in the CharacterInput class.
+        if(Input.GetKey(CharacterInputs.AIMovementLeftKeyCode) && Input.GetKey(CharacterInputs.AIMovementRightKeyCode)){
+            _HorizontalMovement = 0;
+        }
+        else if(Input.GetKey(CharacterInputs.AIMovementLeftKeyCode)){
+            if(_HorizontalMovement > -.9f){
+                _HorizontalMovement += -_MovementCompoundValue;
+            }
+        }else if(Input.GetKey(CharacterInputs.AIMovementRightKeyCode)){
+            if(_HorizontalMovement < .9f){ // .9 Has a really good feel to it with the current player values. 
+                _HorizontalMovement += _MovementCompoundValue;
+            }
+        } 
+        else{
+            _HorizontalMovement = 0;
+            // _Character.CharacterRigidBody2D.velocity = new Vector2(0,0);
+        }
+    }
+
     private void CalcPlayerVerticalInputs(){
         if(!_UsesVerticalMovement){return;}
         // TODO ^^ Based on the above Horizontal.
+    }
+
+    private void CalcAIVerticalInputs(){
+        if(!_UsesVerticalMovement){return;}
+        if(Input.GetKey(CharacterInputs.AIMovementDownKeyCode) && Input.GetKey(CharacterInputs.AIMovementUpKeyCode)){
+            _VerticalMovement = 0;
+        }
+        else if(Input.GetKey(CharacterInputs.AIMovementDownKeyCode)){
+            if(_VerticalMovement > -.9f){
+                _VerticalMovement += -_MovementCompoundValue;
+            }
+        }else if(Input.GetKey(CharacterInputs.AIMovementUpKeyCode)){
+            if(_VerticalMovement < .9f){ // .9 Has a really good feel to it with the current player values. 
+                _VerticalMovement += _MovementCompoundValue;
+            }
+        } 
+        else{
+            _VerticalMovement = 0;
+            // _Character.CharacterRigidBody2D.velocity = new Vector2(0,0);
+        }
     }
 }

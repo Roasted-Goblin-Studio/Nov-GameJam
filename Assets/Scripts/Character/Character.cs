@@ -8,6 +8,10 @@ public class Character : MonoBehaviour
     // Used to contain metadata of the character state
 
     // Private
+    [Header("RigidBody")]
+    [SerializeField] private bool _CharacterUsesGravity = true;
+    public bool CharacterUsesGravity { get => _CharacterUsesGravity; set => _CharacterUsesGravity = value; }
+
     [Header("Timers")]
     private float _GameStartTime;
     private float _GameEndTime;
@@ -120,13 +124,16 @@ public class Character : MonoBehaviour
         Locked
     }
 
+    private void Awake()
+    {
+        RigidBody2D = GetComponent<Rigidbody2D>();
+    }
+
     private void Start() {
         if(_CharacterType == CharacterTypes.Player){ StateOfInteraction = StateOfInteractions.Intro;}
         if(_CharacterType == CharacterTypes.AI){ StateOfInteraction = StateOfInteractions.Active; }
 
         _OriginalLayer = _CurrentLayer;
-
-        RigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
