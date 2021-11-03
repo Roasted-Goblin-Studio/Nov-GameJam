@@ -77,7 +77,7 @@ jobs:
           asset_name: build-${{ matrix.targetPlatform }}.zip
           file: build/build-${{ matrix.targetPlatform }}.zip
           tag: ${{ github.ref }}
-          body: "Automated deployment from ${{ GITHUB_REF_SLUG }} branch"
+          body: "Automated deployment from ${{ ENV.GITHUB_REF_SLUG }} branch"
           #prerelease: true
           overwrite: true
 
