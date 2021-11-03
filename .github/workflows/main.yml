@@ -20,11 +20,11 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          #- StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows # Build a Windows standalone.
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - WebGL # WebGL.
+          #- StandaloneWindows64 # Build a Windows 64-bit standalone.
+          #- StandaloneLinux64 # Build a Linux 64-bit standalone.
+          #- WebGL # WebGL.
         unityVersion:
           - 2020.3.2f1
     
@@ -77,7 +77,7 @@ jobs:
           asset_name: build-${{ matrix.targetPlatform }}.zip
           file: build/build-${{ matrix.targetPlatform }}.zip
           tag: ${{ github.ref }}
-          body: "Automated deployment from develop branch"
+          body: "Automated deployment from ${{ GITHUB_REF_SLUG }} branch"
           #prerelease: true
           overwrite: true
 
@@ -92,23 +92,23 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
-      - name: Download WebGL
-        id: download-webgl
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          version: "develop"
-          file: build-WebGL.zip
-          token: ${{ secrets.GH_CREDENTIALS }}
+#       - name: Download WebGL
+#         id: download-webgl
+#         uses: dsaltares/fetch-gh-release-asset@master
+#         with:
+#           version: "develop"
+#           file: build-WebGL.zip
+#           token: ${{ secrets.GH_CREDENTIALS }}
       
-      - name: Upload WebGL
-        uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: html
-          ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
-          ITCH_USER: roasted-goblin-studios
-          PACKAGE: build-WebGL.zip
-          VERSION: "develop"
+#       - name: Upload WebGL
+#         uses: josephbmanley/butler-publish-itchio-action@master
+#         env:
+#           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+#           CHANNEL: html
+#           ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
+#           ITCH_USER: roasted-goblin-studios
+#           PACKAGE: build-WebGL.zip
+#           VERSION: "develop"
 
   release_windows32_to_itch:
     name: Release Windows (32-Bit) to itch.io
@@ -136,78 +136,78 @@ jobs:
           PACKAGE: build-StandaloneWindows.zip
           VERSION: "develop"
   
-  # release_windows64_to_itch:
-  #   name: Release Windows (64-Bit) to itch.io
-  #   runs-on: ubuntu-latest
-  #   needs: buildForAllPlatforms
-  #   steps: 
-  #     - name: Download Windows (64-Bit)
-  #       id: download-windows64
-  #       uses: dsaltares/fetch-gh-release-asset@master
-  #       with:
-  #         version: develop-latest
-  #         file: build-StandaloneWindows64.zip
-  #         token: ${{ secrets.GH_CREDENTIALS }}
+#   # release_windows64_to_itch:
+#   #   name: Release Windows (64-Bit) to itch.io
+#   #   runs-on: ubuntu-latest
+#   #   needs: buildForAllPlatforms
+#   #   steps: 
+#   #     - name: Download Windows (64-Bit)
+#   #       id: download-windows64
+#   #       uses: dsaltares/fetch-gh-release-asset@master
+#   #       with:
+#   #         version: develop-latest
+#   #         file: build-StandaloneWindows64.zip
+#   #         token: ${{ secrets.GH_CREDENTIALS }}
       
-      # - name: Upload Windows (64-Bit)
-      #   uses: josephbmanley/butler-publish-itchio-action@master
-      #   env:
-      #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-      #     CHANNEL: windows
-      #     ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
-      #     ITCH_USER: roasted-goblin-studios
-      #     PACKAGE: build-StandaloneWindows64.zip
-      #     VERSION: ${{ steps.download-windows64.outputs.version }}
+#       # - name: Upload Windows (64-Bit)
+#       #   uses: josephbmanley/butler-publish-itchio-action@master
+#       #   env:
+#       #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+#       #     CHANNEL: windows
+#       #     ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
+#       #     ITCH_USER: roasted-goblin-studios
+#       #     PACKAGE: build-StandaloneWindows64.zip
+#       #     VERSION: ${{ steps.download-windows64.outputs.version }}
 
-  release_macos_to_itch:
-    name: Release MacOS to itch.io
-    runs-on: ubuntu-latest
-    needs: buildForAllPlatforms
-    steps:
-      - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v3.x
+#   release_macos_to_itch:
+#     name: Release MacOS to itch.io
+#     runs-on: ubuntu-latest
+#     needs: buildForAllPlatforms
+#     steps:
+#       - name: Inject slug/short variables
+#         uses: rlespinasse/github-slug-action@v3.x
          
-      - name: Download MacOS
-        id: download-macos
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          version: "develop"
-          file: build-StandaloneOSX.zip
-          token: ${{ secrets.GH_CREDENTIALS }}
+#       - name: Download MacOS
+#         id: download-macos
+#         uses: dsaltares/fetch-gh-release-asset@master
+#         with:
+#           version: "develop"
+#           file: build-StandaloneOSX.zip
+#           token: ${{ secrets.GH_CREDENTIALS }}
       
-      - name: Upload MacOS
-        uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: mac
-          ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
-          ITCH_USER: roasted-goblin-studios
-          PACKAGE: build-StandaloneOSX.zip
-          VERSION: "develop"
+#       - name: Upload MacOS
+#         uses: josephbmanley/butler-publish-itchio-action@master
+#         env:
+#           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+#           CHANNEL: mac
+#           ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
+#           ITCH_USER: roasted-goblin-studios
+#           PACKAGE: build-StandaloneOSX.zip
+#           VERSION: "develop"
 
-  release_linux_to_itch:
-    name: Release Linux to itch.io
-    runs-on: ubuntu-latest
-    needs: buildForAllPlatforms
-    steps:
-      - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v3.x
+#   release_linux_to_itch:
+#     name: Release Linux to itch.io
+#     runs-on: ubuntu-latest
+#     needs: buildForAllPlatforms
+#     steps:
+#       - name: Inject slug/short variables
+#         uses: rlespinasse/github-slug-action@v3.x
 
-      - name: Download Linux
-        id: download-linux
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          version: "develop"
-          file: build-StandaloneLinux64.zip
-          token: ${{ secrets.GH_CREDENTIALS }}
+#       - name: Download Linux
+#         id: download-linux
+#         uses: dsaltares/fetch-gh-release-asset@master
+#         with:
+#           version: "develop"
+#           file: build-StandaloneLinux64.zip
+#           token: ${{ secrets.GH_CREDENTIALS }}
       
-      - name: Upload Linux
-        uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: linux
-          ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
-          ITCH_USER: roasted-goblin-studios
-          PACKAGE: build-StandaloneLinux64.zip
-          VERSION: "develop"
+#       - name: Upload Linux
+#         uses: josephbmanley/butler-publish-itchio-action@master
+#         env:
+#           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+#           CHANNEL: linux
+#           ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
+#           ITCH_USER: roasted-goblin-studios
+#           PACKAGE: build-StandaloneLinux64.zip
+#           VERSION: "develop"
     
