@@ -88,7 +88,7 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: ${{ env.ITCH_PROJECT_NAME }}
           ITCH_USER: roasted-goblin-studios
-          PACKAGE: build-${{ matrix.targetPlatform }}.zip
+          PACKAGE: build/build-${{ matrix.targetPlatform }}.zip
           VERSION: "develop"
 
 #-----------------------------------------------------------------------------
