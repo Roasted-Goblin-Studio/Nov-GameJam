@@ -44,6 +44,8 @@ public class Character : MonoBehaviour
 
     [Header("Jump")]
     // TODO: MOVE JUMP
+    // private int _JumpsRemaining; // moved to CharacterJump
+    // public int JumpsRemaining { get => _JumpsRemaining; set => _JumpsRemaining = value; }
 
     [Header("Dodge")]
     private bool _CanDodge = true;
@@ -61,6 +63,7 @@ public class Character : MonoBehaviour
     
     public float DodgeDistance { get => _DodgeDistance; set => _DodgeDistance = value; }
     public float DodgeSpeed { get => _DodgeSpeed; set => _DodgeSpeed = value; }
+
 
     
     [Header("Invun")]

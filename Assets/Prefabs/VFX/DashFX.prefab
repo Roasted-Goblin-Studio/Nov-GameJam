@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6181550068687821511}
   - component: {fileID: 3284840796948237681}
   - component: {fileID: 1261995317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DashFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
