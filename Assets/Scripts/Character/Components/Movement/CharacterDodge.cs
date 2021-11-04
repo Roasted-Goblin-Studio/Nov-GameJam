@@ -55,6 +55,7 @@ public class CharacterDodge : CharacterComponent
         
         _StartPos = transform.position;
         // Raycast forward to see if there are any walls or obstancles?
+        // RaycastHit2D hit = Physics2D.Raycast(transform.position, _Character.IsFacingRight ? Vector2.right : Vector2.left, _Character.DodgeDistance, (1 << LayerMask.GetMask("Walls") | 1 << LayerMask.GetMask("Platforms")));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _Character.IsFacingRight ? Vector2.right : Vector2.left, _Character.DodgeDistance, LayerMask.GetMask("Walls"));
         float dodgeDistance = _Character.IsFacingRight ? _Character.DodgeDistance : -_Character.DodgeDistance;
         
