@@ -15,12 +15,14 @@ public class StateController : MonoBehaviour
     // Serialized
     [SerializeField] private AIState _CurrentState;
     [SerializeField] private AIState _RemainState;
+    private AIState _PauseState;
 
     // Public 
     public Character Character { get => _Character; set => _Character = value; }
     public AIFlags AIFlags { get => _AIFlags; set => _AIFlags = value; }
     public GameObject Target {get => _Target; set => _Target = value;}
     public AIState PreviousState {get => _AIPreviousState; set => _AIPreviousState = value;}
+    public AIState PauseState {get => _PauseState; set => _PauseState = value;}
     
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,11 @@ public class StateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // TODO: Check if Character is Actionable
+        CheckGlobalState();
         _CurrentState.EvaluateState(this);
+        
     }
 
     public void TransitionToState(AIState nextState, Decision decision = null){
@@ -80,4 +85,27 @@ public class StateController : MonoBehaviour
         _TransitionContext = null;
     }
 
+    public void PauseAI(){
+        Debug.Log("AI Paused");
+        PauseState = _CurrentState;
+        _CurrentState = _RemainState;
+    }
+
+    public void UnPauseAI(){
+        _CurrentState = PauseState;
+        PauseState = null;
+        Debug.Log("AI UnPaused");
+    }
+
+    private void CheckGlobalState(){
+        if(_Character.GlobalStateManager.GameIsPaused){
+            if(PauseState == null) PauseAI();
+        }else{
+            if(_CurrentState == _RemainState){
+                UnPauseAI();
+            }
+        }
+
+
+    }
 }
