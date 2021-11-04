@@ -25,4 +25,14 @@ public class CharacterInputs : MonoBehaviour
     public KeyCode WeaponKeyCode {get => _WeaponKeyCode; set => _WeaponKeyCode = value;}
     [SerializeField] private KeyCode _WeaponReloadKeyCode = KeyCode.R;
     public KeyCode WeaponReloadKeyCode {get => _WeaponReloadKeyCode; set => _WeaponReloadKeyCode = value;}
+
+    // AI TESTING
+    [SerializeField] private KeyCode _AIMovementLeftKeyCode = KeyCode.LeftArrow;
+    public KeyCode AIMovementLeftKeyCode {get => _AIMovementLeftKeyCode; set => _AIMovementLeftKeyCode = value;}
+    [SerializeField] private KeyCode _AIMovementRightKeyCode = KeyCode.RightArrow;
+    public KeyCode AIMovementRightKeyCode {get => _AIMovementRightKeyCode; set => _AIMovementRightKeyCode = value;}
+    [SerializeField] private KeyCode _AIMovementUpKeyCode = KeyCode.UpArrow;
+    public KeyCode AIMovementUpKeyCode {get => _AIMovementUpKeyCode; set => _AIMovementUpKeyCode = value;}
+    [SerializeField] private KeyCode _AIMovementDownKeyCode = KeyCode.DownArrow;
+    public KeyCode AIMovementDownKeyCode {get => _AIMovementDownKeyCode; set => _AIMovementDownKeyCode = value;}
 }

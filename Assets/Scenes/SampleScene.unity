@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6921135760340436272, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: _UsesVerticalMovement
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6921135760340436281, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_Name
       value: Ronin
@@ -1044,6 +1048,9 @@ GameObject:
   - component: {fileID: 1195629070}
   - component: {fileID: 1195629067}
   - component: {fileID: 1195629066}
+  - component: {fileID: 1195629072}
+  - component: {fileID: 1195629073}
+  - component: {fileID: 1195629074}
   m_Layer: 0
   m_Name: TEMP_BOSS
   m_TagString: Untagged
@@ -1063,9 +1070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0104dbf4e05db314caf930dce9ca6677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MovementSpeed: 0
-  _UsesVerticalMovement: 0
-  _MaxSpeed: 100
+  _MovementSpeed: 100
+  _UsesVerticalMovement: 1
+  _MaxSpeed: 200
   _DragToBeApplied: 3
 --- !u!114 &1195629067
 MonoBehaviour:
@@ -1089,7 +1096,7 @@ MonoBehaviour:
   _CurrentLayer:
     serializedVersion: 2
     m_Bits: 0
-  _CharacterType: 0
+  _CharacterType: 2
   _Sprite: {fileID: 0}
   _WeaponPosition: {fileID: 0}
   _IsInWind: 0
@@ -1152,7 +1159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195629065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.02, y: 7.26, z: 0}
+  m_LocalPosition: {x: 3.42, y: 6.32, z: 0}
   m_LocalScale: {x: 1.8518, y: 1.8518, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1186,7 +1193,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1195,6 +1202,56 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1195629072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195629065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66864928d5cb34340ad009080d620f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _JumpKeyCode: 32
+  _DodgeKeyCode: 304
+  _MovementLeftKeyCode: 97
+  _MovementRightKeyCode: 100
+  _WeaponKeyCode: 106
+  _WeaponReloadKeyCode: 114
+  _AIMovementLeftKeyCode: 276
+  _AIMovementRightKeyCode: 275
+  _AIMovementUpKeyCode: 273
+  _AIMovementDownKeyCode: 274
+--- !u!114 &1195629073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195629065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c1e4b4c49ba324fb030072939f15de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CurrentState: {fileID: 11400000, guid: f95659340c93a5e4b94835ce99f3413c, type: 2}
+  _RemainState: {fileID: 11400000, guid: 85fe093125fea4f49925e163ec352019, type: 2}
+--- !u!114 &1195629074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195629065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a1a68b144cf174d91c9bef9c911065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BossHasStarted: 0
+  _BossIntroHasFinished: 0
 --- !u!1 &1220641977
 GameObject:
   m_ObjectHideFlags: 3
@@ -1282,6 +1339,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1404505087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404505088}
+  - component: {fileID: 1404505089}
+  m_Layer: 0
+  m_Name: GlobalState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404505088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404505087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.637312, y: 4.079118, z: -29.526495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404505089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404505087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 060eee955874ff7439643f7cb92e0831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _GameIsPaused: 0
 --- !u!1001 &1616936058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1784,7 +1885,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -3, z: 0}
-  m_Size: {x: 22, y: 8, z: 1}
+  m_Size: {x: 28, y: 11, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
