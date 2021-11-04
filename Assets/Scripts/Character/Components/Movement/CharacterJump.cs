@@ -9,6 +9,8 @@ public class CharacterJump : CharacterComponent
     private float _TimeSinceLastJump = 0f;
     private float _LowJumpModifier = 2.5f;
     private float _JumpStartPos;
+    private int _MaxJumps = 2;
+    private int _JumpsRemaining;
     // private CharacterMovement _CharacterMovement;
 
     // Serialized
@@ -34,6 +36,7 @@ public class CharacterJump : CharacterComponent
     {
         base.Start();
         // _CharacterMovement = GetComponent<CharacterMovement>();
+        _JumpsRemaining = _MaxJumps;
     }
 
     protected override void HandleBasicComponentFunction()
@@ -68,7 +71,8 @@ public class CharacterJump : CharacterComponent
     {
         // TODO: JUMP TIMEOUT
         // TODO: Add lockouts
-        return _Character.GroundSensor.SensorActivated && JumpInput();
+        // check for double jump
+        return (_Character.GroundSensor.SensorActivated || _JumpsRemaining > 0) && JumpInput();
     }
     
     private bool DecideIfCharacterCanWallJump()
@@ -87,6 +91,7 @@ public class CharacterJump : CharacterComponent
         _JumpStartPos = transform.position.y;
         _Character.RigidBody2D.velocity = Vector2.up * VerticalTakeOff;
         CharacterIsJumping = true;
+        _JumpsRemaining--;
     }
     
     private void WallJump()
@@ -97,6 +102,7 @@ public class CharacterJump : CharacterComponent
         float wallJumpVertical = WallJumpType2 ? _WallJumpPushOff : 0;
         float wallJumpPushOff =  !_Character.IsFacingRight ? _WallJumpPushOff : -_WallJumpPushOff;
         _Character.RigidBody2D.AddForce(new Vector2(wallJumpPushOff, wallJumpVertical), ForceMode2D.Force);
+        _JumpsRemaining = _MaxJumps - 1;
         CharacterIsJumping = true;
     }
 
@@ -122,6 +128,7 @@ public class CharacterJump : CharacterComponent
         {
             // TODO: Lots of things can be done here, but one that I think I may be interested in looking into is fall damage
             CharacterIsJumping = false;
+            _JumpsRemaining = _MaxJumps;
             _Animation.ChangeAnimationState("Land", CharacterAnimation.AnimationType.Static);
         }
     }

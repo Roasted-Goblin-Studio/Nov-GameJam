@@ -5,7 +5,10 @@ using System;
 
 [Serializable]
 public class Decision {
-    public bool _DecisionResult;
+    [SerializeField] private bool _DecisionResult = false;
     [Range(1,10)] // 1 = lowest; 10 = highest
-    public int _Priority = 1;
+    [SerializeField] private int _Priority = 1;
+
+    public bool DecisionResult { get => _DecisionResult; set => _DecisionResult = value; }
+    public int Priority { get => _Priority; set => _Priority = value; }
 }

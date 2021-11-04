@@ -32,7 +32,7 @@ public class AIState : ScriptableObject
             foreach(AITransition transition in _AITransitions){
                 Decision decision = transition._Decision.Decide(controller);
                 
-                if(decision._DecisionResult){
+                if(decision.DecisionResult){
                     controller.TransitionToState(transition._TrueState, decision);
                 }else{
                     controller.TransitionToState(transition._FalseState, decision);
