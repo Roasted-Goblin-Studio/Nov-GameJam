@@ -5,6 +5,7 @@ using System;
 
 public abstract class AIDecision : ScriptableObject
 {
+    protected Decision decision;
     public abstract Decision Decide(StateController controller);
 }
 

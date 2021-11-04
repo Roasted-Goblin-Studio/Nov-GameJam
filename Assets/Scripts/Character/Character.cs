@@ -6,8 +6,15 @@ public class Character : MonoBehaviour
 {
     // Actionable state
     // Used to contain metadata of the character state
+    private GlobalStateManager _GlobalStateManager;
+    private CharacterHealth _CharacterHealth;
+    public CharacterHealth CharacterHealth { get => _CharacterHealth; set => _CharacterHealth = value; }
 
     // Private
+    [Header("RigidBody")]
+    [SerializeField] private bool _CharacterUsesGravity = true;
+    public bool CharacterUsesGravity { get => _CharacterUsesGravity; set => _CharacterUsesGravity = value; }
+
     [Header("Timers")]
     private float _GameStartTime;
     private float _GameEndTime;
@@ -39,6 +46,8 @@ public class Character : MonoBehaviour
 
     [Header("Jump")]
     // TODO: MOVE JUMP
+    // private int _JumpsRemaining; // moved to CharacterJump
+    // public int JumpsRemaining { get => _JumpsRemaining; set => _JumpsRemaining = value; }
 
     [Header("Dodge")]
     private bool _CanDodge = true;
@@ -57,7 +66,22 @@ public class Character : MonoBehaviour
     public float DodgeDistance { get => _DodgeDistance; set => _DodgeDistance = value; }
     public float DodgeSpeed { get => _DodgeSpeed; set => _DodgeSpeed = value; }
 
+
+    [Header("Block")]
+    // TODO: CHECK APPLICATION OF LOGIC VARS - WERE COPIED FROM DODGE - ALL MAY NOT APPLY TO BLOCK - NEEDS REVIEW
+    private bool _CanBlock = true;
+    private bool _IsBlocking = false;
+    private float _TimeUntilblockIsDone = 0f;
+    private float _BlockCooldownFinish = 0f;
+    [SerializeField] private float _BlockDuration = 10f;
+    [SerializeField] private float _BlockCooldownDuration = 3f;
+    public bool CanBlock { get => _CanBlock; set => _CanBlock = value; }
+    public bool IsBlocking { get => _IsBlocking; set => _IsBlocking = value; }
     
+    public float BlockCooldownDuration { get => _BlockCooldownDuration; set => _BlockCooldownDuration = value; }
+    public float BlockDuration { get => _BlockDuration; set => _BlockDuration = value; }
+    
+
     [Header("Invun")]
 
 
@@ -96,6 +120,7 @@ public class Character : MonoBehaviour
     public StateOfInteractions StateOfInteraction { get => _StateOfInteraction; set => _StateOfInteraction = value; }
     public Rigidbody2D RigidBody2D { get => _RigidBody2D; set => _RigidBody2D = value; }
     public Transform WeaponPosition { get => _WeaponPosition; set => _WeaponPosition = value; }
+    public GlobalStateManager GlobalStateManager { get => _GlobalStateManager; set => _GlobalStateManager = value; }
     
     // READ ONLY
     public LayerMask OriginalLayer => _OriginalLayer;
@@ -120,13 +145,19 @@ public class Character : MonoBehaviour
         Locked
     }
 
+    private void Awake()
+    {
+        RigidBody2D = GetComponent<Rigidbody2D>();
+        GameObject GlobalState = GameObject.Find("GlobalState");
+        GlobalStateManager = GlobalState.GetComponent<GlobalStateManager>();
+        CharacterHealth = GetComponent<CharacterHealth>();
+    }
+
     private void Start() {
         if(_CharacterType == CharacterTypes.Player){ StateOfInteraction = StateOfInteractions.Intro;}
         if(_CharacterType == CharacterTypes.AI){ StateOfInteraction = StateOfInteractions.Active; }
 
         _OriginalLayer = _CurrentLayer;
-
-        RigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {

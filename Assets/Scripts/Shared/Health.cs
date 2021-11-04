@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     // Protected
     protected Character _Character;
-    protected float _CurrentHealth;
+    [SerializeField] protected float _CurrentHealth;
     protected float _OriginalMaxHealth;
 
     // Serialized

@@ -8,7 +8,7 @@ public class Beam : Projectile
     [SerializeField] private BeamDirections _BeamDirection = BeamDirections.Right;
 
     private bool _PlayerInBeam = false;
-    private bool _EndOfBeam = false;
+    [SerializeField] private bool _EndOfBeam = false;
 
     public bool EndOfBeam {get => _EndOfBeam; set => _EndOfBeam = value;}
     public BeamDirections BeamDirection {get => _BeamDirection; set => _BeamDirection = value;}
