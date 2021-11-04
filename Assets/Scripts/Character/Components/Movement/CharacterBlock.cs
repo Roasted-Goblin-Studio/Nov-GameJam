@@ -50,9 +50,7 @@ public class CharacterBlock : CharacterComponent
             return true;
         }
 
-        if (!_Character.IsBlocking){
-            if (BlockInput() && _Character.CanBlock && _CharacterCanBlockAgain && BlockCoolDownComplete()) return true;
-        }
+        if (!_Character.IsBlocking && BlockInput() && _Character.CanBlock && _CharacterCanBlockAgain && BlockCoolDownComplete()) return true;
  
         return false;
     }
