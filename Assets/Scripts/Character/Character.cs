@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     // Actionable state
     // Used to contain metadata of the character state
     private GlobalStateManager _GlobalStateManager;
+    private CharacterHealth _CharacterHealth;
+    public CharacterHealth CharacterHealth { get => _CharacterHealth; set => _CharacterHealth = value; }
 
     // Private
     [Header("RigidBody")]
@@ -134,6 +136,7 @@ public class Character : MonoBehaviour
         RigidBody2D = GetComponent<Rigidbody2D>();
         GameObject GlobalState = GameObject.Find("GlobalState");
         GlobalStateManager = GlobalState.GetComponent<GlobalStateManager>();
+        CharacterHealth = GetComponent<CharacterHealth>();
     }
 
     private void Start() {
