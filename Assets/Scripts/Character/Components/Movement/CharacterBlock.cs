@@ -86,7 +86,7 @@ public class CharacterBlock : CharacterComponent
     private void DecideBlockReset()
     {
         // Reset if player release block button
-        if(Input.GetKeyUp(CharacterInputs.BlockKeyCode)){
+        if(_Character.IsBlocking && Input.GetKeyUp(CharacterInputs.BlockKeyCode)){
             Debug.Log("key");
             BlockReset();
         }
