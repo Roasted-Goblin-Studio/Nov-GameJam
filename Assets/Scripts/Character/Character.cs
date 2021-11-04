@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     // Actionable state
     // Used to contain metadata of the character state
     private GlobalStateManager _GlobalStateManager;
+    private CharacterHealth _CharacterHealth;
+    public CharacterHealth CharacterHealth { get => _CharacterHealth; set => _CharacterHealth = value; }
 
     // Private
     [Header("RigidBody")]
@@ -65,7 +67,21 @@ public class Character : MonoBehaviour
     public float DodgeSpeed { get => _DodgeSpeed; set => _DodgeSpeed = value; }
 
 
+    [Header("Block")]
+    // TODO: CHECK APPLICATION OF LOGIC VARS - WERE COPIED FROM DODGE - ALL MAY NOT APPLY TO BLOCK - NEEDS REVIEW
+    private bool _CanBlock = true;
+    private bool _IsBlocking = false;
+    private float _TimeUntilblockIsDone = 0f;
+    private float _BlockCooldownFinish = 0f;
+    [SerializeField] private float _BlockDuration = 10f;
+    [SerializeField] private float _BlockCooldownDuration = 3f;
+    public bool CanBlock { get => _CanBlock; set => _CanBlock = value; }
+    public bool IsBlocking { get => _IsBlocking; set => _IsBlocking = value; }
     
+    public float BlockCooldownDuration { get => _BlockCooldownDuration; set => _BlockCooldownDuration = value; }
+    public float BlockDuration { get => _BlockDuration; set => _BlockDuration = value; }
+    
+
     [Header("Invun")]
 
 
@@ -134,6 +150,7 @@ public class Character : MonoBehaviour
         RigidBody2D = GetComponent<Rigidbody2D>();
         GameObject GlobalState = GameObject.Find("GlobalState");
         GlobalStateManager = GlobalState.GetComponent<GlobalStateManager>();
+        CharacterHealth = GetComponent<CharacterHealth>();
     }
 
     private void Start() {

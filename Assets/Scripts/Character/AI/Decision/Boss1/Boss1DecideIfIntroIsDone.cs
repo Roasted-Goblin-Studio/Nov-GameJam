@@ -13,4 +13,12 @@ public class Boss1DecideIfIntroIsDone : AIDecision
 
         return decision;
     }
+
+    private void OnEnable() {
+        Debug.Log("Enabled");
+    }
+
+    private void OnDisable(){
+        decision = new Decision();
+    }
 }
