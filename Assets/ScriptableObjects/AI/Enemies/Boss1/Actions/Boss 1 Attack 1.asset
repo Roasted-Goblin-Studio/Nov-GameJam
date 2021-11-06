@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9597b96cd7cf5443a02261e0cb9fc31, type: 3}
-  m_Name: DecideIfStarted
+  m_Script: {fileID: 11500000, guid: 2cb156430c6466846bf823d86c0c858f, type: 3}
+  m_Name: Boss 1 Attack 1
   m_EditorClassIdentifier: 
-  _Priority: 1
+  _AttackName: Stage 1 - Attack 1
+  _AttackActions:
+  - _AttackName: Triple Spit
+    _TotalTimeOfAttack: 10
+    _TimeOfTell: 2
+    _TimeOfAttack: 6
+    _TimeOfOutro: 2
