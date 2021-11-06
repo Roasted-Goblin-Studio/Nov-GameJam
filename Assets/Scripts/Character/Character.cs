@@ -169,6 +169,7 @@ public class Character : MonoBehaviour
         }
 
         if(LayersToIgnore != null) SetIgnoreLayers();
+        if(CharacterType == CharacterTypes.Player) IsHitable = true;
     }
 
     private void Update() {

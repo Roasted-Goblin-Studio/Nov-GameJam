@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Boss 1 Egg Drop Attack
   m_EditorClassIdentifier: 
   _AttackName: Egg Drop
-  _TimeOfTell: 2
+  _TimeOfTell: 0
   _TimeOfAttack: 4
-  _TimeOfEnd: 2
-  _TimeOfCooldown: 6
+  _TimeOfEnd: 0
+  _TimeOfCooldown: 2
+  _NumberOfShots: 3
