@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterDodge : CharacterComponent
 {
+    [SerializeField] private LayerMask[] _LayerMasks;
     private Vector3 _StartPos;
     private Vector3 _EndPos;
     private float _Fraction = 0f;
@@ -54,12 +55,31 @@ public class CharacterDodge : CharacterComponent
         _CharacterMovement.HorizontalMovement = 0;
         
         _StartPos = transform.position;
-        // Raycast forward to see if there are any walls or obstancles?
-        // RaycastHit2D hit = Physics2D.Raycast(transform.position, _Character.IsFacingRight ? Vector2.right : Vector2.left, _Character.DodgeDistance, (1 << LayerMask.GetMask("Walls") | 1 << LayerMask.GetMask("Platforms")));
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _Character.IsFacingRight ? Vector2.right : Vector2.left, _Character.DodgeDistance, LayerMask.GetMask("Walls"));
-        float dodgeDistance = _Character.IsFacingRight ? _Character.DodgeDistance : -_Character.DodgeDistance;
         
-        if(hit.collider != null) _EndPos = new Vector3(hit.point.x, _StartPos.y, 0);
+        // Raycast forward to see if there are any walls or obstancles
+        float dodgeDistance = _Character.IsFacingRight ? _Character.DodgeDistance : -_Character.DodgeDistance;
+        float dodgeBuffer = _Character.IsFacingRight ? -0.2f : 0.2f;
+        float closestLayerHit = 0; 
+        foreach (LayerMask layer in _LayerMasks)
+        {
+            RaycastHit2D layerHit = Physics2D.Raycast(transform.position, _Character.IsFacingRight ? Vector2.right : Vector2.left, _Character.DodgeDistance, layer);
+            float pointHit = layerHit.point.x;
+            
+            
+            if(pointHit != 0){
+                if(closestLayerHit == 0) closestLayerHit = pointHit + dodgeBuffer;
+                else if(pointHit > 0){
+                    // Keep the 0.1f in as a buffer. We want the character rigid body to fall on the left side of the collision detection.
+                    if (closestLayerHit < pointHit) closestLayerHit = pointHit + dodgeBuffer;
+                }
+                else if(pointHit < 0){
+                    // Negative values
+                    if (closestLayerHit > pointHit) closestLayerHit = pointHit + dodgeBuffer;
+                }
+            }
+        }
+        
+        if(closestLayerHit != 0) _EndPos = new Vector3(closestLayerHit, _StartPos.y, 0);
         else _EndPos = new Vector3(_StartPos.x + dodgeDistance, _StartPos.y, 0);
     }
 
@@ -81,8 +101,6 @@ public class CharacterDodge : CharacterComponent
     private void CalculateDodgeReset(){
         if(_Character.IsGrounded) _CharacterCanDodgeAgain = true;
         if(_Character.SlidingSensorL1.SensorActivated || _Character.SlidingSensorR1.SensorActivated) _CharacterCanDodgeAgain = true;
-        // HEY! LISTEN:
-        // MuLtIpLe JuMp FlAgS cAn Be SeT hErE
     }
 
 }
