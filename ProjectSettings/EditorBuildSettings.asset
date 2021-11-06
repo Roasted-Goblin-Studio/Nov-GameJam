@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WestonScene.unity
     guid: eb1e3a42f022f364b8a39bbec748bee3
+  - enabled: 1
+    path: Assets/Scenes/JohnDevScene/JohnDevScene.unity
+    guid: d934d1834dc6b624c9656a1b10711f5f
   m_configObjects: {}
