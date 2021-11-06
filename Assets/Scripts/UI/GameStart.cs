@@ -6,7 +6,7 @@ public class GameStart : MonoBehaviour
     public void StartGame ()
     {
         Debug.Log("TRIED TO START LEVEL 1");
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("WestonScene");
     }
 
     public void Controls ()

@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 5244e0af994ad6241887309a11c41130
+  - enabled: 1
+    path: Assets/Scenes/WestonScene.unity
+    guid: eb1e3a42f022f364b8a39bbec748bee3
   m_configObjects: {}
