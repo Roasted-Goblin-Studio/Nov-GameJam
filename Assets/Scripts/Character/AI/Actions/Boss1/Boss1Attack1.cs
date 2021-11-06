@@ -8,13 +8,13 @@ public class Boss1Attack1 : AIAttackAction
     public override void Act(StateController controller)
     {
         
-        if(!AttackIsActive){
-            AttackIsActive = true;
-            AttackStageTell = true;
+        if(!_AttackIsActive){
+            _AttackIsActive = true;
+            _AttackStageTell = true;
 
         }
 
-        if(AttackIsActive && AttackStageTell){
+        if(_AttackIsActive && _AttackStageTell){
 
         }
         

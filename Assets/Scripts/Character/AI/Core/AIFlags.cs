@@ -12,4 +12,5 @@ public class AIFlags : MonoBehaviour
     [SerializeField] private bool _BossIntroHasFinished;
     public bool BossIntroHasFinished { get => _BossIntroHasFinished; set => _BossIntroHasFinished = value; }
     
+    
 }

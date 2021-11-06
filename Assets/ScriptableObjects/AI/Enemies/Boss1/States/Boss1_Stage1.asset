@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Boss1_Stage1
   m_EditorClassIdentifier: 
   _AIMicroAction: {fileID: 0}
-  _AIMacroActions: []
+  _AIMacroActions:
+  - {fileID: 11400000, guid: 40ed6438b0c37db47a5d106e9fcc46a7, type: 2}
   _AITransitions:
   - _Decision: {fileID: 11400000, guid: 0a8c930eb14d3924ca107aeb3c42e3ba, type: 2}
     _TrueState: {fileID: 11400000, guid: 2eb8d697a2c1f3e469d6547dc9f27a12, type: 2}
-    _FalseState: {fileID: 11400000, guid: 85fe093125fea4f49925e163ec352019, type: 2}
-  - _Decision: {fileID: 11400000, guid: c4701c28f268cde46be7d29ab80981d4, type: 2}
-    _TrueState: {fileID: 11400000, guid: 4879f16b96d74644988a932071da54ab, type: 2}
     _FalseState: {fileID: 11400000, guid: 85fe093125fea4f49925e163ec352019, type: 2}
   _ReturnToPreviousStateOnFinish: 0

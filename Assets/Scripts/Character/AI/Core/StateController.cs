@@ -48,7 +48,7 @@ public class StateController : MonoBehaviour
 
         if(decision == null){
             // Returning to Previous State
-            Debug.Log("Transition To State called by: " + nextState.name);
+            //Debug.Log("Transition To State called by: " + nextState.name);
             Decision decision_base = new Decision();
             decision_base.Priority = 1;
             decision_base.DecisionResult = true;
@@ -58,7 +58,7 @@ public class StateController : MonoBehaviour
             
         }
         else if(nextState != _RemainState){
-            Debug.Log("Transition To State called by: " + nextState.name + " With priority: " + decision.Priority);
+            //Debug.Log("Transition To State called by: " + nextState.name + " With priority: " + decision.Priority);
             if(_TransitionContext == null || _TransitionState == null){
                 _TransitionContext = decision;
                 _TransitionState = nextState;
@@ -74,7 +74,7 @@ public class StateController : MonoBehaviour
     public void EvaluateTransitions(){
         // Original code
         if(_CurrentState == _TransitionState || _TransitionState == null) return;
-        Debug.Log("Transitioning State from: " + _CurrentState.name + " To State: " + _TransitionState.name);
+        //Debug.Log("Transitioning State from: " + _CurrentState.name + " To State: " + _TransitionState.name);
         _AIPreviousState = _CurrentState;
         _CurrentState = _TransitionState;
         ResetTransitions();
