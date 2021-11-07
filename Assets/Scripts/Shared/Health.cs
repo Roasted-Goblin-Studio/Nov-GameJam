@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     // Private
-    
 
     // Protected
     protected Character _Character;
-    [SerializeField] protected float _CurrentHealth;
     protected float _OriginalMaxHealth;
 
     // Serialized
-    [SerializeField] protected float _MaxHealth; 
+    [SerializeField] protected Slider _HealthIndicatorBar;  // Put the slider object here
+    [SerializeField] protected float _CurrentHealth;
+    [SerializeField] protected float _MaxHealth;
 
-    // Public 
+    // Public
     public float CurrentHealth => _CurrentHealth; //READONLY
 
     // Start is called before the first frame update
@@ -25,10 +26,26 @@ public class Health : MonoBehaviour
         _OriginalMaxHealth = _MaxHealth;
     }
 
+    // Health indicator controller
+    public void SetHealth(float Health)
+    {
+        _HealthIndicatorBar.value = Health;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // Each enemy object needs a DamagePoints script with a "Points" value.
+        // This could be done another way, but for now this works in dev.
+        if (other.transform.CompareTag("EnemyDamage"))
+        {
+            _CurrentHealth -= other.gameObject.GetComponent<DamagePoints>().Points;
+        }
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        SetHealth(_CurrentHealth / _MaxHealth);
     }
 
     public virtual void Heal(float amount){
