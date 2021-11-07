@@ -87,7 +87,7 @@ public class CharacterAttack: CharacterComponent
 
     private bool DecideIfCharacterCanAttack()
     {
-        return AttackInput() && Time.time <= _TimeUntilCharacterCanAttack;
+        return AttackInput();// && Time.time <= _TimeUntilCharacterCanAttack;
     }
 
     private bool AttackInput()
