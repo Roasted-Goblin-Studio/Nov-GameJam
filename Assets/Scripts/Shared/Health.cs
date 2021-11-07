@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class Health : MonoBehaviour
 
     // Protected
     protected Character _Character;
-    [SerializeField] protected float _CurrentHealth;
     protected float _OriginalMaxHealth;
 
     // Serialized
+    [SerializeField] protected Slider _HealthIndicatorBar;
+    [SerializeField] protected float _CurrentHealth;
     [SerializeField] protected float _MaxHealth; 
 
     // Public 
@@ -25,10 +27,16 @@ public class Health : MonoBehaviour
         _OriginalMaxHealth = _MaxHealth;
     }
 
+    // Health indicator controller
+    public void SetHealth(float Health)
+    {
+        _HealthIndicatorBar.value = Health;
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        SetHealth(_CurrentHealth / _MaxHealth);
     }
 
     public virtual void Heal(float amount){
