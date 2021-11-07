@@ -7,13 +7,11 @@ public class Falling : Projectile
     // Eggs should fall until they collide with something. 
     // If the egg collides with a player it should do damage and return to the pool
 
-    private ReturnToPool returnToPool;
     [SerializeField] private float _EggTilt = 0f;
 
     protected override void Start()
     {
         base.Start();
-        returnToPool = GetComponent<ReturnToPool>();
         float eggTilt = Random.Range(_EggTilt, -_EggTilt);
         Direction = new Vector2(eggTilt * 10, -1);
     }
@@ -42,7 +40,10 @@ public class Falling : Projectile
                 return;
             }
         }
+        if(other.tag == "Non Hitable") {
+            return;
+        }
 
-        returnToPool.DestroyObject();
+        _ReturnToPool.DestroyObject();
     }
 }

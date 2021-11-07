@@ -58,11 +58,6 @@ public class BulletWeapon : Weapon
         _CurrentAmmo = _MaxMagazineSize;
     }
 
-    protected override void UseWeapon()
-    {
-        if (DecideIfWeaponIsUsable()) UseProjectileWeapon();
-    }
-
     private void UseProjectileWeapon()
     {
         if (_CurrentAmmo <= 0)
@@ -106,5 +101,22 @@ public class BulletWeapon : Weapon
     private bool DecideIfWeaponIsUsable(){
         if(WeaponIsUsable && !WeaponInAction) return true;
         return false;
+    }
+
+    protected override void UseWeapon()
+    {
+        SpawnProjectile();
+    }
+
+    protected void SpawnProjectile(){
+        GameObject pooledProjectile = ObjectPooler.GetGameObjectFromPool();
+
+        pooledProjectile.transform.position = ProjectileSpawnPosition.position;
+        pooledProjectile.SetActive(true);
+
+        Vector2 newDirection = WeaponOwner.IsFacingRight ? transform.right : -transform.right;
+
+        Projectile projectile = pooledProjectile.GetComponent<Projectile>();
+        projectile.SetDirection(newDirection, transform.rotation, WeaponOwner.IsFacingRight);
     }
 }

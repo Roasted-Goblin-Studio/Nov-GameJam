@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
     {
         // Each enemy object needs a DamagePoints script with a "Points" value.
         // This could be done another way, but for now this works in dev.
-        if (other.transform.CompareTag("EnemyDamage"))
+        if (other.transform.CompareTag("Boss Damage"))
         {
             _CurrentHealth -= other.gameObject.GetComponent<DamagePoints>().Points;
         }
@@ -45,7 +45,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        SetHealth(_CurrentHealth / _MaxHealth);
+        //SetHealth(_CurrentHealth / _MaxHealth);
     }
 
     public virtual void Heal(float amount){

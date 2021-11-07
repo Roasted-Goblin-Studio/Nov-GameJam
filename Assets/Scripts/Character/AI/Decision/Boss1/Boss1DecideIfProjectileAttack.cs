@@ -7,12 +7,8 @@ public class Boss1DecideIfProjectileAttack : AIDecision
 {
     public override Decision Decide(StateController controller)
     {
-
-        Debug.Log(controller.AIFlags.TargetLocation.position);
-        // Pie slice detection
-        
-
-
+        // Lowest level decision
+        decision.DecisionResult = true;
         return decision;
     }
 }

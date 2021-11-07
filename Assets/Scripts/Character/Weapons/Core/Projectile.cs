@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     protected ReturnToPool _ProjectileReturnToPool;
     protected Character _ProjectileOwner;
     protected float _TotalSpeed = 0f;
+    protected ReturnToPool _ReturnToPool;
 
     protected LayerIgnore _LayersToIgnore;
     protected TagsToAvoid _TagsToAvoid;
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
         _Collider2D = GetComponent<Collider2D>();
         _LayersToIgnore = GetComponent<LayerIgnore>();
         _TagsToAvoid = GetComponent<TagsToAvoid>();
+        _ReturnToPool = GetComponent<ReturnToPool>();
     }
 
     // Start is called before the first frame update
@@ -90,6 +92,15 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         // This will need to improve drastically.
+        foreach (var tag in _TagsToAvoid.TagsToAvoidStrings)
+        {
+            if(other.tag == tag){
+                return;
+            }
+        }
+        if(other.tag == "Non Hitable") {
+            return;
+        }
     }
 
     protected virtual void OnTriggerStay2D(Collider2D collider){

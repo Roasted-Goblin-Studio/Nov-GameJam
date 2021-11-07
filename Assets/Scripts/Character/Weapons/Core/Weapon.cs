@@ -63,7 +63,7 @@ public class Weapon : MonoBehaviour
     {
         // if(!WeaponIsUsable) return;
         // What does it mean to use a weapon?
-
+        
     }
 
     public virtual void InitiateUseWeapon()

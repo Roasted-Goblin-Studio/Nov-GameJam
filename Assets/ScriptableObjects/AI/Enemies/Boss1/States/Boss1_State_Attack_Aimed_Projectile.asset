@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Boss1_State_Attack_Aimed_Projectile
   m_EditorClassIdentifier: 
   _AIMicroAction: {fileID: 0}
-  _AIMacroActions: []
+  _AIMacroActions:
+  - {fileID: 11400000, guid: 2bf2c7344957a8945bc844afa36bebb8, type: 2}
   _AITransitions: []
-  _ReturnToPreviousStateOnFinish: 1
+  _ReturnToPreviousStateOnFinish: 0
