@@ -30,6 +30,7 @@ public class CharacterComponent : MonoBehaviour
 
     // Physics based in here
     private void FixedUpdate() {
+
         HandlePhysicsComponentFunction();
     }
 
