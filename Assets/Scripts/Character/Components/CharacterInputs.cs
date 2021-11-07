@@ -16,6 +16,10 @@ public class CharacterInputs : MonoBehaviour
     [SerializeField] private KeyCode _DodgeKeyCode = KeyCode.LeftShift;
     public KeyCode DodgeKeyCode {get => _DodgeKeyCode; set => _DodgeKeyCode = value;}
 
+    // Attacking 
+    [SerializeField] private KeyCode _AttackKeyCode = KeyCode.Mouse0;
+    public KeyCode AttackKeyCode {get => _AttackKeyCode; set => _AttackKeyCode = value;}
+
     // Blocking
     [SerializeField] private KeyCode _BlockKeyCode = KeyCode.E;
     public KeyCode BlockKeyCode {get => _BlockKeyCode; set => _BlockKeyCode = value;}

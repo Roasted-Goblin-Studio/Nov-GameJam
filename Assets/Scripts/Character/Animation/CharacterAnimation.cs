@@ -54,10 +54,6 @@ public class CharacterAnimation : MonoBehaviour
     {
         UpdateAnimationCooldowns();
         DynamicAnimations();
-        /* for testing purposes */
-        if (!Input.GetKeyDown(KeyCode.Mouse0)) return;
-
-        ChangeAnimationState(_Character.IsGrounded ? "Attack" : "AirAttack", AnimationType.Static);
     }
 
     private void DynamicAnimations()
