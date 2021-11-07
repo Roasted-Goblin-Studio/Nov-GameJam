@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1931b30feb64bf3438eea23bfe1138f2, type: 3}
   m_Name: Boss1DecideIfStage1IsOver
   m_EditorClassIdentifier: 
+  _Priority: 10

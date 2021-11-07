@@ -23,7 +23,7 @@ public class AIState : ScriptableObject
 
     public void EvaluateTransitions(StateController controller){
         if(_ReturnToPreviousStateOnFinish){
-            Debug.Log("Returning ...");
+            //Debug.Log("Returning ...");
             controller.TransitionToState(controller.PreviousState);
         }
         else if((_AITransitions != null || _AITransitions.Length > 1)){

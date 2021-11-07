@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9398037cfafaac14b883571b24dd8be6, type: 3}
   m_Name: Boss1DecideIfIntroIsDone
   m_EditorClassIdentifier: 
+  _Priority: 1

@@ -8,6 +8,6 @@ public class Simple_Action : AIAction
     [SerializeField] string _ActionDebugName;
     public override void Act(StateController controller)
     {
-        Debug.Log("Action in process: " + _ActionDebugName);
+       // Debug.Log("Action in process: " + _ActionDebugName);
     }
 }

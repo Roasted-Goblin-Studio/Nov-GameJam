@@ -12,4 +12,8 @@ public class AIFlags : MonoBehaviour
     [SerializeField] private bool _BossIntroHasFinished;
     public bool BossIntroHasFinished { get => _BossIntroHasFinished; set => _BossIntroHasFinished = value; }
     
+    // Target
+    private GameObject _Target;
+    public GameObject Target { get => _Target; set => _Target = value; }
+    public Transform TargetLocation { get => _Target.transform; }
 }

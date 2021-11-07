@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9597b96cd7cf5443a02261e0cb9fc31, type: 3}
   m_Name: DecideIfStarted
   m_EditorClassIdentifier: 
+  _Priority: 1

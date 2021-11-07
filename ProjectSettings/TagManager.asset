@@ -7,7 +7,8 @@ TagManager:
   - Platform
   - Sensor
   - Walls
-  - EnemyDamage
+  - Boss
+  - Boss Projectile
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Sensor
   - Walls
   - Background
-  - 
-  - 
+  - Boss
+  - Boss Projectile
   - 
   - 
   - 

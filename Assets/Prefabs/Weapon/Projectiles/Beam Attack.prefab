@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8471525389908540271}
   - component: {fileID: 8471525389908540275}
   - component: {fileID: 8471525389908540268}
+  - component: {fileID: 1636952344061117645}
   m_Layer: 0
   m_Name: Beam Attack
   m_TagString: Untagged
@@ -149,4 +150,18 @@ MonoBehaviour:
   _ProjectileDamage: 1
   _ProjectileType: 1
   _ColliderWidth: 1
+  _BeamDirection: 1
   _EndOfBeam: 0
+--- !u!114 &1636952344061117645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471525389908540272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ae7179ad74e4547b1e77de2e768c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LifeTime: 2

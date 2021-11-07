@@ -94,6 +94,7 @@ public class Character : MonoBehaviour
     private StateOfInteractions _StateOfInteraction;
     private LayerMask _OriginalLayer;
     private Rigidbody2D _RigidBody2D;
+    private LayerIgnore _LayersToIgnore;
 
     [SerializeField] private LayerMask _CurrentLayer;
     [SerializeField] private CharacterTypes _CharacterType;
@@ -101,6 +102,8 @@ public class Character : MonoBehaviour
 
     [Header("Weapon Settings")]
     [SerializeField] private Transform _WeaponPosition;
+    [SerializeField] protected Weapon[] _Weapons;
+    public Weapon[] Weapons { get => _Weapons; set => _Weapons = value; }
 
     [Header("Environmental")]
     [SerializeField] private bool _IsInWind = false;
@@ -121,6 +124,7 @@ public class Character : MonoBehaviour
     public Rigidbody2D RigidBody2D { get => _RigidBody2D; set => _RigidBody2D = value; }
     public Transform WeaponPosition { get => _WeaponPosition; set => _WeaponPosition = value; }
     public GlobalStateManager GlobalStateManager { get => _GlobalStateManager; set => _GlobalStateManager = value; }
+    public LayerIgnore LayersToIgnore { get => _LayersToIgnore; set => _LayersToIgnore = value; }
     
     // READ ONLY
     public LayerMask OriginalLayer => _OriginalLayer;
@@ -151,6 +155,7 @@ public class Character : MonoBehaviour
         GameObject GlobalState = GameObject.Find("GlobalState");
         GlobalStateManager = GlobalState.GetComponent<GlobalStateManager>();
         CharacterHealth = GetComponent<CharacterHealth>();
+        LayersToIgnore = GetComponent<LayerIgnore>();
     }
 
     private void Start() {
@@ -158,9 +163,24 @@ public class Character : MonoBehaviour
         if(_CharacterType == CharacterTypes.AI){ StateOfInteraction = StateOfInteractions.Active; }
 
         _OriginalLayer = _CurrentLayer;
+        foreach (Weapon weapon in Weapons)
+        {
+            weapon.InitiateAssignOwner(this);
+        }
+
+        if(LayersToIgnore != null) SetIgnoreLayers();
+        if(CharacterType == CharacterTypes.Player) IsHitable = true;
     }
 
     private void Update() {
         
+    }
+
+    private void SetIgnoreLayers(){
+
+        foreach (int item in LayersToIgnore.LayersToIgnore)
+        {
+            Physics.IgnoreLayerCollision(gameObject.layer, item);
+        }
     }
 }

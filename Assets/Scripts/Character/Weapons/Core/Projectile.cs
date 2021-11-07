@@ -18,6 +18,9 @@ public class Projectile : MonoBehaviour
     protected Character _ProjectileOwner;
     protected float _TotalSpeed = 0f;
 
+    protected LayerIgnore _LayersToIgnore;
+    protected TagsToAvoid _TagsToAvoid;
+
     public Vector2 Direction { get; set; }
     public float Speed {get => _TotalSpeed; set => _TotalSpeed = value;}
     public Character ProjectileOwner { get => _ProjectileOwner; set => _ProjectileOwner = value; }
@@ -26,13 +29,16 @@ public class Projectile : MonoBehaviour
     public enum ProjectileTypes
     {
         Bullet,
-        Beam
+        Beam,
+        Falling
     }
 
     private void Awake() {
         _ProjectileRigidBody2D = GetComponent<Rigidbody2D>();
         _ProjectileSpriteRender = GetComponent<SpriteRenderer>();
         _Collider2D = GetComponent<Collider2D>();
+        _LayersToIgnore = GetComponent<LayerIgnore>();
+        _TagsToAvoid = GetComponent<TagsToAvoid>();
     }
 
     // Start is called before the first frame update
@@ -52,7 +58,13 @@ public class Projectile : MonoBehaviour
     }
 
     protected virtual void SetLayerCollisionIgnores(){
+        if(_LayersToIgnore == null) return;
+        foreach (int item in _LayersToIgnore.LayersToIgnore)
+        {
+            Physics.IgnoreLayerCollision(gameObject.layer, item);
+        }
 
+        
     }
 
     protected virtual void MoveProjectile(){
