@@ -15,7 +15,6 @@ namespace Assets.Scripts.Environment.Effects
 
         // random material (small/large wind) alternation
 
-
         // Use this for initialization
         void Start()
         {

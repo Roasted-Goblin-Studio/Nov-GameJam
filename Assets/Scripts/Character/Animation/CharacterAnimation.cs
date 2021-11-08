@@ -116,6 +116,7 @@ public class CharacterAnimation : MonoBehaviour
     /// <param name="animationType">Uses the AnimationType enum to determine the priority level of the animation. Defaults to the lowest priority, Dynamic.</param>
     public void ChangeAnimationState(string newState, AnimationType animationType = AnimationType.Dynamic)
     {
+        Debug.Log(newState);
         if (_CurrentAnimation == newState) return;
 
         if (!_AnimationTimes.ContainsKey(newState))

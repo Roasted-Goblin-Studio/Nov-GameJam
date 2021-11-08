@@ -7,12 +7,13 @@ public class CharacterAttack: CharacterComponent
     private LayerMask _EnemyLayers;
     private float _AttackRange = 0.5f;
     private Transform _AttackPoint;
+    private float _ComboFinishForce = 10.0f;
 
 
-    private bool _IsAttacking = false;
     private int _MaxComboCount = 3;
     private int _CurrentComboCount = 0;
     private float _TimeUntilCharacterCanAttack = 0f;
+    private float _TimeSinceLastAttack = 0f;
 
     // We need to track:
     // - attack delays (i.e, when the player has to wait before making an attack. 
@@ -30,7 +31,9 @@ public class CharacterAttack: CharacterComponent
         base.Start();
     }
 
-    protected override void HandleBasicComponentFunction() { }
+    protected override void HandleBasicComponentFunction() 
+    {
+    }
 
     protected override bool HandlePlayerInput()
     {
@@ -49,16 +52,22 @@ public class CharacterAttack: CharacterComponent
 
     private void Attack()
     {
+        var endLag = 0.33f; // hard coding for testing
+        _CurrentComboCount++;
+        _Character.IsAttacking = true;
+
+        _Animation.ChangeAnimationState(string.Format("Attack{0}", _CurrentComboCount), CharacterAnimation.AnimationType.Static);
+
         if (_CurrentComboCount == _MaxComboCount)
         {
+            // apply upward force on combo finisher
+            _Character.RigidBody2D.velocity = Vector2.up * _ComboFinishForce;
             _CurrentComboCount = 0;
-        } 
-        else
-        {
-            _CurrentComboCount++;
+
+            endLag += 0.2f; // hard coded for testing
         }
-        //_TimeUntilCharacterCanAttack = Time.time + 0.3333f;
-        _Animation.ChangeAnimationState(string.Format("Attack{0}", _CurrentComboCount), CharacterAnimation.AnimationType.Static);
+
+        _TimeUntilCharacterCanAttack = Time.time + endLag;
 
         if (!_AttackPoint) return;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_AttackPoint.position, _AttackRange, _EnemyLayers);
@@ -67,6 +76,7 @@ public class CharacterAttack: CharacterComponent
         {
             Debug.Log("We hit " + enemy.name);
         }
+
     }
 
     private void OnDrawGizmosSelected()
@@ -87,7 +97,8 @@ public class CharacterAttack: CharacterComponent
 
     private bool DecideIfCharacterCanAttack()
     {
-        return AttackInput();// && Time.time <= _TimeUntilCharacterCanAttack;
+        if (Time.time >= _TimeUntilCharacterCanAttack) _Character.IsAttacking = false;
+        return AttackInput() && !_Character.IsAttacking && Time.time >= _TimeUntilCharacterCanAttack;
     }
 
     private bool AttackInput()

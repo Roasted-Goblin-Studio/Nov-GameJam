@@ -66,6 +66,9 @@ public class Character : MonoBehaviour
     public float DodgeDistance { get => _DodgeDistance; set => _DodgeDistance = value; }
     public float DodgeSpeed { get => _DodgeSpeed; set => _DodgeSpeed = value; }
 
+    [Header("Attack")]
+    private bool _IsAttacking = false;
+    private bool _IsHitStopped = false;
 
     [Header("Block")]
     // TODO: CHECK APPLICATION OF LOGIC VARS - WERE COPIED FROM DODGE - ALL MAY NOT APPLY TO BLOCK - NEEDS REVIEW
@@ -118,6 +121,10 @@ public class Character : MonoBehaviour
     public bool IsGrounded { get => _IsGrounded; set => _IsGrounded = value; }
     public bool IsHitable { get => _IsHitable; set => _IsHitable = value; }
     public bool IsInWind { get => _IsInWind; set => _IsInWind = value; }
+    public bool IsAttacking { get => _IsAttacking; set => _IsAttacking = value; }
+    // perhaps a more reusable state should be in place? Will anything aside from attacking cause a "hit stop" effect
+    public bool IsHitStopped { get => _IsHitStopped; set => _IsHitStopped = value; }
+
     
     public CharacterTypes CharacterType { get => _CharacterType; set => _CharacterType = value; }
     public StateOfInteractions StateOfInteraction { get => _StateOfInteraction; set => _StateOfInteraction = value; }

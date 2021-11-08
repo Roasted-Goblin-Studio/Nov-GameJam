@@ -15,7 +15,7 @@ public class CharacterJump : CharacterComponent
 
     // Serialized
     [SerializeField] private float _FallMultiplier = 2.5f;
-    [SerializeField] private float _GravityScaled;
+    [SerializeField] private float _GravityScaled = 1f;
     [SerializeField] private float _VerticalTakeOff = 15f;
     [SerializeField] private float _TimeBetweenJumps;
     [SerializeField] private float _WallJumpPushOff = 1000f;
@@ -108,17 +108,24 @@ public class CharacterJump : CharacterComponent
 
     private void ApplyGravity()
     {
+        // does it make sense to keep gravity calculationd
+        if (_Character.IsAttacking) _GravityScaled = 0.0f;
+        else if (_Character.IsHitStopped) _GravityScaled = 0f;
+        else _GravityScaled = 1f;
+
+        _Character.RigidBody2D.gravityScale = _GravityScaled;
+
         if (_Character.RigidBody2D.velocity.y < 0f)
         {
             _Character.IsFalling = true;
             // Effects rigidbody with downward force
-            _Character.RigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (FallMultiplier - GravityScaled) * Time.deltaTime;
+            _Character.RigidBody2D.velocity += new Vector2(0, (1 * Physics2D.gravity.y * FallMultiplier * Time.deltaTime) * GravityScaled);
         }
         else if (_Character.RigidBody2D.velocity.y > 0f)
         {
             _Character.IsFalling = false;
             // Creates "Video game" jump that has a snappier up and floaty down
-            _Character.RigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (LowJumpModifier - GravityScaled) * Time.deltaTime;
+            _Character.RigidBody2D.velocity += new Vector2(0, (1 * Physics2D.gravity.y * LowJumpModifier * Time.deltaTime) * GravityScaled);
         }
     }
 

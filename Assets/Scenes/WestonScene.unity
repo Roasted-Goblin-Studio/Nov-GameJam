@@ -242,6 +242,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5794358218029451915, guid: 5e0b61241adb2e848b57c95e879818db, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5794358218029451917, guid: 5e0b61241adb2e848b57c95e879818db, type: 3}
       propertyPath: m_Name
       value: WindFX (1)
@@ -1110,6 +1114,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6921135759878347845, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921135759878347845, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6921135760340436268, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1153,6 +1165,10 @@ PrefabInstance:
     - target: {fileID: 6921135760340436268, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921135760340436274, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: _GravityScaled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6921135760340436281, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_Name
