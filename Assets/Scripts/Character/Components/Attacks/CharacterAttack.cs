@@ -8,12 +8,15 @@ public class CharacterAttack: CharacterComponent
     private float _AttackRange = 0.5f;
     private Transform _AttackPoint;
     private float _ComboFinishForce = 10.0f;
+    private CharacterMovement _CharacterMovement;
 
 
     private int _MaxComboCount = 3;
     private int _CurrentComboCount = 0;
     private float _TimeUntilCharacterCanAttack = 0f;
     private float _TimeSinceLastAttack = 0f;
+    private float _ComboTimeOut = 0.5f;
+    //private bool _IsAttacking;
 
     // We need to track:
     // - attack delays (i.e, when the player has to wait before making an attack. 
@@ -25,14 +28,23 @@ public class CharacterAttack: CharacterComponent
     //   - range?
     //   - tech point value
     //   - end lag value
-    
+
     protected override void Start()
     {
         base.Start();
+        _CharacterMovement = GetComponent<CharacterMovement>();
+
+        if (_CharacterMovement == null) Debug.LogWarning("CharacterAttack was unable to get CharacterMovement component.");
     }
 
     protected override void HandleBasicComponentFunction() 
     {
+        _TimeSinceLastAttack += Time.deltaTime;
+        if (_TimeSinceLastAttack >= _ComboTimeOut)
+        {
+            // reset combo
+            _CurrentComboCount = 0;
+        }
     }
 
     protected override bool HandlePlayerInput()
@@ -52,9 +64,12 @@ public class CharacterAttack: CharacterComponent
 
     private void Attack()
     {
-        var endLag = 0.33f; // hard coding for testing
+        var attackLength = 0.3f; // hard coding for testing
+        if (_Character.IsGrounded) _CharacterMovement.SetMovementLockTime(attackLength);
+        _TimeSinceLastAttack = 0f;
         _CurrentComboCount++;
         _Character.IsAttacking = true;
+
 
         _Animation.ChangeAnimationState(string.Format("Attack{0}", _CurrentComboCount), CharacterAnimation.AnimationType.Static);
 
@@ -64,10 +79,10 @@ public class CharacterAttack: CharacterComponent
             _Character.RigidBody2D.velocity = Vector2.up * _ComboFinishForce;
             _CurrentComboCount = 0;
 
-            endLag += 0.2f; // hard coded for testing
+            attackLength += 0.2f; // hard coded for testing
         }
 
-        _TimeUntilCharacterCanAttack = Time.time + endLag;
+        _TimeUntilCharacterCanAttack = Time.time + attackLength;
 
         if (!_AttackPoint) return;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_AttackPoint.position, _AttackRange, _EnemyLayers);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class CharacterMovement : CharacterComponent
     private float _MovementCompoundValue = 0.015f;
     private float _HorizontalEnviromentalForceApplied = 0;
     private float _VerticalEnviromentalForceApplied = 0;
+    private float _MovementLockTimer = 0f;
 
     // Protected
 
@@ -43,6 +45,19 @@ public class CharacterMovement : CharacterComponent
     {
         base.Update();
         DetectIfGrounded();
+        DetectIfMovementLocked();
+    }
+
+    public void DetectIfMovementLocked()
+    {
+        if (Time.time > _MovementLockTimer) _Character.MovementLocked = false;
+    }
+
+    public void SetMovementLockTime(float time)
+    {
+        if (_MovementLockTimer > Time.time + time) return;
+        _Character.MovementLocked = true;
+        _MovementLockTimer = Time.time + time;
     }
 
     protected override void HandlePhysicsComponentFunction(){

@@ -54,6 +54,7 @@ public class CharacterJump : CharacterComponent
     {
         if (!base.HandlePlayerInput()) return false;
 
+        //if (DecideIfCharacterCanJump()) StartCoroutine(JumpCoroutine());
         if (DecideIfCharacterCanJump()) Jump();
         if (DecideIfCharacterCanWallJump()) WallJump();
 
@@ -88,10 +89,22 @@ public class CharacterJump : CharacterComponent
 
     private void Jump()
     {
+        _Animation.ChangeAnimationState(string.Format("JumpStart{0}", _JumpsRemaining == _MaxJumps ? "" : "Air"), CharacterAnimation.AnimationType.Static);
         _JumpStartPos = transform.position.y;
         _Character.RigidBody2D.velocity = Vector2.up * VerticalTakeOff;
         CharacterIsJumping = true;
         _JumpsRemaining--;
+    }
+
+    // the jump animation has a buildup delay and requires the animation to play for 2 frames before jumping
+    private IEnumerator JumpCoroutine()
+    {
+        _Animation.ChangeAnimationState("JumpStart", CharacterAnimation.AnimationType.Static);
+        CharacterIsJumping = true;
+        _JumpsRemaining--;
+        _JumpStartPos = transform.position.y;
+        yield return new WaitForSeconds(0.1f);
+        _Character.RigidBody2D.velocity = Vector2.up * VerticalTakeOff;
     }
     
     private void WallJump()
@@ -108,8 +121,8 @@ public class CharacterJump : CharacterComponent
 
     private void ApplyGravity()
     {
-        // does it make sense to keep gravity calculationd
-        if (_Character.IsAttacking) _GravityScaled = 0.0f;
+        // does it make sense to keep gravity calculation
+        if (_Character.IsAttacking) _GravityScaled = 0.3f;
         else if (_Character.IsHitStopped) _GravityScaled = 0f;
         else _GravityScaled = 1f;
 
@@ -123,7 +136,6 @@ public class CharacterJump : CharacterComponent
         }
         else if (_Character.RigidBody2D.velocity.y > 0f)
         {
-            _Character.IsFalling = false;
             // Creates "Video game" jump that has a snappier up and floaty down
             _Character.RigidBody2D.velocity += new Vector2(0, (1 * Physics2D.gravity.y * LowJumpModifier * Time.deltaTime) * GravityScaled);
         }
@@ -131,12 +143,13 @@ public class CharacterJump : CharacterComponent
 
     private void DecideIfCharacterLanded()
     {
-        if (_Character.GroundSensor.SensorActivated && _Character.RigidBody2D.velocity.y <= 0f && CharacterIsJumping)
+        if (_Character.GroundSensor.SensorActivated && _Character.RigidBody2D.velocity.y <= 0f && _Character.IsFalling)
         {
             // TODO: Lots of things can be done here, but one that I think I may be interested in looking into is fall damage
             CharacterIsJumping = false;
             _JumpsRemaining = _MaxJumps;
             _Animation.ChangeAnimationState("Land", CharacterAnimation.AnimationType.Static);
+            _Character.IsFalling = false;
         }
     }
 

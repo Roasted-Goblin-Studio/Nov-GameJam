@@ -11,10 +11,8 @@ public class CharacterAnimation : MonoBehaviour
     private float _StaticAnimationTime;
     private float _PriorityAnimationTime;
 
-
     private Dictionary<string, float> _AnimationTimes = new Dictionary<string, float>();
     private string _CurrentAnimation;
-
 
     public Dictionary<string, float> AnimationTimes => _AnimationTimes;
 
@@ -69,9 +67,13 @@ public class CharacterAnimation : MonoBehaviour
                 ChangeAnimationState("landing", AnimationType.Static);
             }
             */
-            if (_Character.IsMoving)
+            if (!_Character.IsMoving && _CurrentAnimation == "Run")
             {
-                ChangeAnimationState("Run");
+                ChangeAnimationState("RunStop", AnimationType.Static);
+            }
+            else if (_Character.IsMoving)
+            {
+                HandleRunAnimation();
             }
             else
             {
@@ -81,12 +83,29 @@ public class CharacterAnimation : MonoBehaviour
         else if (_Character.IsFalling)
         {
             // if the current animation state is "jump", then we know to play "jumpToFall"
-            ChangeAnimationState("Fall");
+
+            HandleFallAnimation();
         }
         else
         {
             ChangeAnimationState("Jump");
         }
+    }
+
+    private void HandleFallAnimation()
+    {
+        // if the last animation was jump, jumpstartair
+        //if (_CurrentAnimation == "Jump" || _CurrentAnimation == "JumpStartAir")
+        if (_CurrentAnimation == "JumpToFall" || _CurrentAnimation == "Fall") ChangeAnimationState("Fall");
+        else ChangeAnimationState("JumpToFall", AnimationType.Static);
+    }
+
+    private void HandleRunAnimation()
+    {
+        // current animation is NOT RUN
+        // if the current animation is NOT run, then call RunStart
+        if (_CurrentAnimation != "Run" && _CurrentAnimation != "RunStart") ChangeAnimationState("RunStart", AnimationType.Static);
+        else ChangeAnimationState("Run");
     }
 
     private void UpdateAnimationCooldowns()
