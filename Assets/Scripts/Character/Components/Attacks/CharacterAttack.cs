@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAttack: CharacterComponent
+public class CharacterAttack : CharacterComponent
 {
-    private LayerMask _EnemyLayers;
-    private float _AttackRange = 0.5f;
-    private Transform _AttackPoint;
-    private float _ComboFinishForce = 10.0f;
+    [SerializeField] private Transform _AttackPoint;
+    [SerializeField] private float _AttackRange = 0.5f;
+    [SerializeField] private LayerMask _EnemyLayers;
+    private float _ComboFinishForce = 5.0f;
     private CharacterMovement _CharacterMovement;
-
 
     private int _MaxComboCount = 3;
     private int _CurrentComboCount = 0;
     private float _TimeUntilCharacterCanAttack = 0f;
     private float _TimeSinceLastAttack = 0f;
     private float _ComboTimeOut = 0.5f;
-    //private bool _IsAttacking;
 
     // We need to track:
     // - attack delays (i.e, when the player has to wait before making an attack. 
@@ -39,11 +37,23 @@ public class CharacterAttack: CharacterComponent
 
     protected override void HandleBasicComponentFunction() 
     {
+        CheckAttackPointSide();
         _TimeSinceLastAttack += Time.deltaTime;
         if (_TimeSinceLastAttack >= _ComboTimeOut)
         {
             // reset combo
+            _Character.IsHitStopped = false;
+            _Character.IsAttacking = false;
             _CurrentComboCount = 0;
+        }
+    }
+
+    private void CheckAttackPointSide()
+    {
+        if (_Character.IsFacingRight && _AttackPoint.localPosition.x < 0 || !_Character.IsFacingRight && _AttackPoint.localPosition.x > 0)
+        {
+            //Debug.Log("Flipping... " + _AttackPoint.position.x + " inverted: " + _AttackPoint.position.x * -1);
+            _AttackPoint.localPosition = new Vector2((_AttackPoint.localPosition.x * -1), _AttackPoint.localPosition.y);
         }
     }
 
@@ -89,6 +99,7 @@ public class CharacterAttack: CharacterComponent
 
         foreach(Collider2D enemy in hitEnemies)
         {
+            _Character.IsHitStopped = true;
             Debug.Log("We hit " + enemy.name);
         }
 
@@ -112,8 +123,7 @@ public class CharacterAttack: CharacterComponent
 
     private bool DecideIfCharacterCanAttack()
     {
-        if (Time.time >= _TimeUntilCharacterCanAttack) _Character.IsAttacking = false;
-        return AttackInput() && !_Character.IsAttacking && Time.time >= _TimeUntilCharacterCanAttack;
+        return AttackInput() && Time.time >= _TimeUntilCharacterCanAttack;
     }
 
     private bool AttackInput()

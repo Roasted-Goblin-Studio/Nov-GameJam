@@ -154,6 +154,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c6efd936ce70041a0673561441e20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1610648565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921135760340436281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9000906e415284a8642326aac6ad8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1290928316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458389255254998115, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.48
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8458389255254998115, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.93
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 8458389255254998115, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -267,6 +279,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6921135760697941592}
     - target: {fileID: 8458389255254998141, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
+      propertyPath: _GravityScaled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458389255254998141, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: _FallMultiplier
       value: 1
       objectReference: {fileID: 0}
@@ -281,6 +297,14 @@ PrefabInstance:
     - target: {fileID: 8458389255838294055, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.712
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458389256000333066, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458389256000333066, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8458389256359663574, guid: c6b6db9db79a14545b8fcc92d34380ad, type: 3}
       propertyPath: m_IsActive

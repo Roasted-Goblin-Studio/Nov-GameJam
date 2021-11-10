@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &565127394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565127395}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565127395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565127394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: -0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5372518750030983831}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3063526484866227405
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +237,7 @@ Animator:
   m_GameObject: {fileID: 5372518749604145635}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 32abe3ee9ecf9f04b811f207692834ca, type: 2}
+  m_Controller: {fileID: 9100000, guid: f19dfce3b0213b948be429f456515175, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -275,6 +305,7 @@ Transform:
   - {fileID: 5372518750291497263}
   - {fileID: 5372518751298263429}
   - {fileID: 3063526484866227404}
+  - {fileID: 565127395}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -399,7 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _FallMultiplier: 1
   _GravityScaled: 1
-  _VerticalTakeOff: 15
+  _VerticalTakeOff: 17.5
   _TimeBetweenJumps: 0
   _WallJumpPushOff: 75000
   WallJumpType2: 1
@@ -520,6 +551,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9000906e415284a8642326aac6ad8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AttackPoint: {fileID: 565127395}
+  _AttackRange: 0.5
+  _EnemyLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &3063526483736424709
 MonoBehaviour:
   m_ObjectHideFlags: 0

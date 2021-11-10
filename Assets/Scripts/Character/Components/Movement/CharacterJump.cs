@@ -54,7 +54,6 @@ public class CharacterJump : CharacterComponent
     {
         if (!base.HandlePlayerInput()) return false;
 
-        //if (DecideIfCharacterCanJump()) StartCoroutine(JumpCoroutine());
         if (DecideIfCharacterCanJump()) Jump();
         if (DecideIfCharacterCanWallJump()) WallJump();
 
@@ -95,17 +94,6 @@ public class CharacterJump : CharacterComponent
         CharacterIsJumping = true;
         _JumpsRemaining--;
     }
-
-    // the jump animation has a buildup delay and requires the animation to play for 2 frames before jumping
-    private IEnumerator JumpCoroutine()
-    {
-        _Animation.ChangeAnimationState("JumpStart", CharacterAnimation.AnimationType.Static);
-        CharacterIsJumping = true;
-        _JumpsRemaining--;
-        _JumpStartPos = transform.position.y;
-        yield return new WaitForSeconds(0.1f);
-        _Character.RigidBody2D.velocity = Vector2.up * VerticalTakeOff;
-    }
     
     private void WallJump()
     {
@@ -122,8 +110,12 @@ public class CharacterJump : CharacterComponent
     private void ApplyGravity()
     {
         // does it make sense to keep gravity calculation
-        if (_Character.IsAttacking) _GravityScaled = 0.3f;
-        else if (_Character.IsHitStopped) _GravityScaled = 0f;
+        if (_Character.IsHitStopped)
+        {
+            _Character.RigidBody2D.velocity = new Vector2(0, 0);
+            _GravityScaled = 0f;
+        }
+        else if (_Character.IsAttacking) _GravityScaled = 0.5f;
         else _GravityScaled = 1f;
 
         _Character.RigidBody2D.gravityScale = _GravityScaled;

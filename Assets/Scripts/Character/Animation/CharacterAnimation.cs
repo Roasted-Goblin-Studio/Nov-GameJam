@@ -60,13 +60,6 @@ public class CharacterAnimation : MonoBehaviour
 
         if (_Character.IsGrounded)
         {
-            // if the current animation state is "falling" then we know to play the landing anim
-            /*
-            if (_CurrentAnimation == "Fall")
-            {
-                ChangeAnimationState("landing", AnimationType.Static);
-            }
-            */
             if (!_Character.IsMoving && _CurrentAnimation == "Run")
             {
                 ChangeAnimationState("RunStop", AnimationType.Static);
@@ -82,8 +75,6 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (_Character.IsFalling)
         {
-            // if the current animation state is "jump", then we know to play "jumpToFall"
-
             HandleFallAnimation();
         }
         else
@@ -94,16 +85,12 @@ public class CharacterAnimation : MonoBehaviour
 
     private void HandleFallAnimation()
     {
-        // if the last animation was jump, jumpstartair
-        //if (_CurrentAnimation == "Jump" || _CurrentAnimation == "JumpStartAir")
-        if (_CurrentAnimation == "JumpToFall" || _CurrentAnimation == "Fall") ChangeAnimationState("Fall");
-        else ChangeAnimationState("JumpToFall", AnimationType.Static);
+        if (_CurrentAnimation == "Jump") ChangeAnimationState("JumpToFall", AnimationType.Static);
+        else ChangeAnimationState("Fall");
     }
 
     private void HandleRunAnimation()
     {
-        // current animation is NOT RUN
-        // if the current animation is NOT run, then call RunStart
         if (_CurrentAnimation != "Run" && _CurrentAnimation != "RunStart") ChangeAnimationState("RunStart", AnimationType.Static);
         else ChangeAnimationState("Run");
     }
