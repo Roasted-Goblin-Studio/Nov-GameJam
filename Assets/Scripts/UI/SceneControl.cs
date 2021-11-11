@@ -31,7 +31,6 @@ public class SceneControl : MonoBehaviour
     {
         Debug.Log("TRIED TO LOAD EXIT SCENE");
         SceneManager.LoadScene("Exit");
-        Invoke("ExitGame", 3);
     }
 
     public void ExitGame ()

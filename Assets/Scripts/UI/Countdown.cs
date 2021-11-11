@@ -19,6 +19,10 @@ public class Countdown : SceneControl
     
     [Tooltip("Bool indicator of countdown visibility")] 
     [SerializeField] private bool _IsCountdownVisible = true;
+    
+    [Tooltip("Bool indicator to quit game at end ot timer")] 
+    [SerializeField] private bool _IsEndOfGame = false;
+
 
 
     private void Update()
@@ -26,10 +30,18 @@ public class Countdown : SceneControl
         if (_CountdownToStart > 1)
         {
             _CountdownToStart -= Time.deltaTime;
-            if (_IsCountdownVisible) DisplayCountdown();
+            if (_IsCountdownVisible && _Text) DisplayCountdown();
         }
-        else if (_CountdownCompletionScene)
+        
+        else if (_IsEndOfGame)
+        {
             SceneManager.LoadScene(_CountdownCompletionScene.name);
+            Debug.Log("TRIED TO EXIT GAME THROUGH QUIT FUNCTION");
+            Application.Quit();
+        }
+
+        else if (_CountdownCompletionScene) SceneManager.LoadScene(_CountdownCompletionScene.name);
+
         else ExitGame();
     }
 
