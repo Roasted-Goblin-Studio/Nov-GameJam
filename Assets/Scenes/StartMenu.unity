@@ -1173,7 +1173,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1791902783}
         m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: ExitScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

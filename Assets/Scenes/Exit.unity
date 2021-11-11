@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: countdown here
+  m_Text: 
 --- !u!222 &310709745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 437474854}
   - component: {fileID: 437474853}
   m_Layer: 5
-  m_Name: Intro
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Intro Scene
+  m_Text: Thanks for playing!
 --- !u!222 &437474854
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 1791902781}
   - component: {fileID: 1791902783}
   m_Layer: 5
-  m_Name: IntroScreen
+  m_Name: ExitScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,9 +521,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Text: {fileID: 310709744}
-  _LeadingText: Start game in...
+  _LeadingText: 'Exit game in...  '
   _CountdownToStart: 5
-  _CountdownCompletionScene: {fileID: 102900000, guid: eb1e3a42f022f364b8a39bbec748bee3, type: 3}
+  _CountdownCompletionScene: {fileID: 102900000, guid: df348ec52fd6f6b4d93fa7554a2a071a, type: 3}
+  _IsCountdownVisible: 1
 --- !u!1 &1929042847
 GameObject:
   m_ObjectHideFlags: 0
