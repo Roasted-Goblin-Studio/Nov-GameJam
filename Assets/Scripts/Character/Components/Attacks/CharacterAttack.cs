@@ -34,7 +34,8 @@ public class CharacterAttack: CharacterComponent
 
     protected override bool HandlePlayerInput()
     {
-        if (!base.HandlePlayerInput()) return false;
+        Debug.Log("attack");
+        if (!base.HandlePlayerInput() || GlobalStateManager.GameIsPaused) return false;
 
         if (DecideIfCharacterCanAttack()) Attack();
 

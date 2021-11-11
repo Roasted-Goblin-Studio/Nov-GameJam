@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JohnDevScene/JohnDevScene.unity
     guid: d934d1834dc6b624c9656a1b10711f5f
+  - enabled: 1
+    path: Assets/Scenes/ControlsMenu.unity
+    guid: 6a46bca717e208f46bf57e40423a900f
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: f3b1f7d1b1504fe43a3c755809add0ce
+  - enabled: 1
+    path: Assets/Scenes/Exit.unity
+    guid: 5e8c2f6e505ad39469aaa1035d115f81
+  - enabled: 1
+    path: Assets/Scenes/EndOfGame.unity
+    guid: df348ec52fd6f6b4d93fa7554a2a071a
   m_configObjects: {}

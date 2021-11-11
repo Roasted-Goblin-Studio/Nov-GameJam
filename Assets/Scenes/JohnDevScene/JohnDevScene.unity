@@ -399,10 +399,10 @@ RectTransform:
   m_Father: {fileID: 1537385273}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 230}
-  m_SizeDelta: {x: 51.0959, y: 8.2466}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -436, y: -217}
+  m_SizeDelta: {x: 51.095886, y: 8.246613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158595070
 MonoBehaviour:
@@ -514,6 +514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beam Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 8471525389908540275, guid: 202b5e8d9fd07f74389aff82a007c302, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202b5e8d9fd07f74389aff82a007c302, type: 3}
 --- !u!1 &245867764
@@ -582,7 +586,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!212 &245867767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -642,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245867764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.62, y: -1.13, z: 0}
+  m_LocalPosition: {x: 8.62, y: 6.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -867,7 +871,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060eee955874ff7439643f7cb92e0831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GameIsPaused: 0
+  _PauseKeyCode: 102
+  text: {fileID: 2113452506}
+  PauseStrings:
+  - homework, again...
+  - whatever!
+  - continue?
+  - Trees are so tall
+  - taking out the trash...
+  - Is that a squirrel?
+  - rocks are so cool
+  - Not now!
+  - dinner time
 --- !u!4 &440554537
 Transform:
   m_ObjectHideFlags: 0
@@ -917,10 +932,10 @@ RectTransform:
   m_Father: {fileID: 1537385273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 230}
-  m_SizeDelta: {x: 51.0959, y: 8.2466}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 436, y: -217}
+  m_SizeDelta: {x: 51.095947, y: 8.246613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600387690
 MonoBehaviour:
@@ -2450,18 +2465,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6921135760340436281, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
   m_PrefabInstance: {fileID: 1703609621}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1488168282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488168281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c46a4248dfb505c4aa8f9575ea9a6b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1488168294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 731081591, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6921135760340436268, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3213,8 +3220,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45, y: 70}
-  m_SizeDelta: {x: 603.9191, y: 185.3193}
+  m_AnchoredPosition: {x: 15, y: 70}
+  m_SizeDelta: {x: 1343.6118, y: 198.9166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113452506
 MonoBehaviour:
@@ -3243,13 +3250,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 143
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: whatever
+  m_Text: paused
 --- !u!222 &2113452507
 CanvasRenderer:
   m_ObjectHideFlags: 0

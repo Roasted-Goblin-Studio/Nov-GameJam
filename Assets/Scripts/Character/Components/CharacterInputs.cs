@@ -7,10 +7,6 @@ public class CharacterInputs : MonoBehaviour
     // Jumping
     [SerializeField] private KeyCode _JumpKeyCode = KeyCode.Space; 
     public KeyCode JumpKeyCode {get => _JumpKeyCode; set => _JumpKeyCode = value;}
-    
-    // Pausing
-    [SerializeField] private KeyCode _PauseKeyCode = KeyCode.F;
-    public KeyCode PauseKeyCode {get => _PauseKeyCode; set => _PauseKeyCode = value;}
 
     // Dodging
     [SerializeField] private KeyCode _DodgeKeyCode = KeyCode.LeftShift;
