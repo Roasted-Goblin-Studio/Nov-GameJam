@@ -52,7 +52,7 @@ public class CharacterJump : CharacterComponent
 
     protected override bool HandlePlayerInput()
     {
-        if (!base.HandlePlayerInput()) return false;
+        if (!base.HandlePlayerInput() || GlobalStateManager.GameIsPaused) return false;
 
         if (DecideIfCharacterCanJump()) Jump();
         if (DecideIfCharacterCanWallJump()) WallJump();

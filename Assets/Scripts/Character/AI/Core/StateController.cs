@@ -98,7 +98,7 @@ public class StateController : MonoBehaviour
     }
 
     private void CheckGlobalState(){
-        if(_Character.GlobalStateManager.GameIsPaused){
+        if(GlobalStateManager.GameIsPaused){
             if(PauseState == null) PauseAI();
         }else{
             if(_CurrentState == _RemainState){

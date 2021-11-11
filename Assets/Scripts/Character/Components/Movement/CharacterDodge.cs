@@ -24,7 +24,7 @@ public class CharacterDodge : CharacterComponent
     }
 
     protected override bool HandlePlayerInput(){
-        if(!base.HandlePlayerInput()) return false;
+        if(!base.HandlePlayerInput() || GlobalStateManager.GameIsPaused) return false;
         
         if(DecideIfCharacterCanDodge()) Dodge();
 

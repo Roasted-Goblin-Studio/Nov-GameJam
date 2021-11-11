@@ -582,7 +582,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!212 &245867767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245867764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.62, y: -1.13, z: 0}
+  m_LocalPosition: {x: 8.62, y: 6.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060eee955874ff7439643f7cb92e0831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GameIsPaused: 0
+  _PauseKeyCode: 102
 --- !u!4 &440554537
 Transform:
   m_ObjectHideFlags: 0
@@ -2450,18 +2450,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6921135760340436281, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
   m_PrefabInstance: {fileID: 1703609621}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1488168282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488168281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c46a4248dfb505c4aa8f9575ea9a6b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1488168294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2787,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 731081591, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6921135760340436268, guid: 04da39672dbe70642a8145fb4026b392, type: 3}
       propertyPath: m_RootOrder
       value: 1
