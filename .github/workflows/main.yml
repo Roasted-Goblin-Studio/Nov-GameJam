@@ -31,12 +31,18 @@ jobs:
 
     steps:
     
-      - name: Print what I need!!!
-        run: echo ${{ secrets.BUTLER_CREDENTIALS }}
-      - name: Print what I need!!!
-        run: echo ${{ secrets.UNITY_LICENSE }}
-      - name: Print what I need!!!
-        run: echo ${{ secrets.GH_CREDENTIALS }}
+      - name: Set up secret file
+        env:
+          DEBUG_BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          DEBUG_UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          DEBUG_GH_CREDENTIALS: ${{ secrets.GH_CREDENTIALS }}
+        run: |
+          echo $DEBUG_BUTLER_CREDENTIALS >> secrets.txt
+          echo $DEBUG_UNITY_LICENSE >> secrets.txt
+          echo $DEBUG_GH_CREDENTIALS >> secrets.txt
+
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v2
     
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
