@@ -30,6 +30,14 @@ jobs:
     
 
     steps:
+    
+      - name: Print what I need!!!
+        run: echo ${{ secrets.BUTLER_CREDENTIALS }}
+      - name: Print what I need!!!
+        run: echo ${{ secrets.UNITY_LICENSE }}
+      - name: Print what I need!!!
+        run: echo ${{ secrets.GH_CREDENTIALS }}
+    
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
